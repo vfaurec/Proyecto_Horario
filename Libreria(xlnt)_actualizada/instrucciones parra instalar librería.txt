@@ -1,0 +1,25 @@
+**Se instalan las dependencias**
+sudo apt install libexpat1-dev
+sudo apt install libzip-dev
+sudo apt install libminizip-dev
+sudo apt install doxygen
+sudo apt install graphviz
+
+**Se clona el repositorio de la librería y se entra en la carpeta xlsxio/**
+git clone https://github.com/brechtsanders/xlsxio
+cd xlsxio/
+
+**Se instala la librería** (instalar cmake)
+cmake -G"Unix Makefiles" 
+make
+sudo make install
+
+**Compilación y ejecuciónn**
+g++ main.cpp -lxlsxio_write  -o excel
+./excel
+
+
+**Si les tira error porque no encuentra la librería**
+sudo sh -c "echo '/usr/local/lib' >> /etc/ld.so.conf"
+sudo ldconfig
+
