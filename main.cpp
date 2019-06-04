@@ -5,6 +5,7 @@
 #include"estructuras/Docentes.hpp"
 #include"estructuras/Salas.hpp"
 #include"estructuras/Bloque.hpp"
+#include"estructuras/Funciones.hpp"
 
 using namespace std;
 
@@ -15,24 +16,21 @@ int main(){
     Salas salas;
     Bloque bloque;
 
-    xlnt::workbook c;
+    /*xlnt::workbook c;
     c.load("archivos/Cursos.xlsx");
     auto wc = c.active_sheet();
-    //std::clog << "Processing spread sheet" << std::endl;
     for (auto row : wc.rows(false)) 
     { 
-        /*for (auto cell : row) 
-    { 
-        std::clog << cell.to_string() << std::endl;
-    }*/
         cursos.codigo.push_back(row[0].to_string());
         cursos.nombre.push_back(row[1].to_string());
         cursos.id_docente.push_back(row[2].to_string());
         cursos.nombre_docente.push_back(row[3].to_string());
         cursos.apellido_docente.push_back(row[4].to_string());
         cursos.bloque.push_back(row[5].to_string());
-    }
-    
+    }*/
+
+    cargar_archivo_cursos(cursos);
+
     xlnt::workbook d;
     d.load("archivos/Docentes.xlsx");
     auto wd = d.active_sheet();
@@ -69,9 +67,11 @@ int main(){
         salas.sala.push_back(row[1].to_string());
     }
     
-    /*mostrarFila(cursos,1);
+
+    mostrarFila(cursos,1);
     filtrarCurso(cursos,"Cálculo I");
-    mostrarFila(docentes,5);
+
+    /*mostrarFila(docentes,5);
     filtrarDocente(docentes,"Rene Amador");
     mostrarFila(salas,3);
     filtrarSala(salas,"M3");*/
@@ -79,7 +79,7 @@ int main(){
     //Crear formato de horario salida, un excel me aguanta solo 16 hojas
     xlnt::workbook salida;
     for(int i=0;i<=15;i++){
-        xlnt::worksheet hoja = salida.create_sheet();;
+        xlnt::worksheet hoja = salida.create_sheet();
         hoja.cell("C2").value("LUNES");
         hoja.cell("D2").value("MARTES");
         hoja.cell("E2").value("MIERCOLES");
@@ -95,7 +95,7 @@ int main(){
         hoja.cell("B9").value("Bloque 7");
     }
         salida.save("salida.xlsx");
-   
+    
 
     return 0;
 }
