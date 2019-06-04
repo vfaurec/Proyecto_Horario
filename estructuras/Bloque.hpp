@@ -2,7 +2,7 @@
 #include<vector>
 #include<string>
 #include<iostream>
-#include "Salas.hpp"
+#include "Sala.hpp"
 
 using namespace std;
 

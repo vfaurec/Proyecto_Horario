@@ -5,7 +5,7 @@
 
 using namespace std;
 
-struct Docentes
+struct Docente
 {
     vector<string> id_docente;
     vector<string> nombre;
@@ -17,8 +17,10 @@ struct Docentes
     vector<string> bloque5;
     vector<string> bloque6;
     vector<string> bloque7;
+    bool check =false; //verifica carga del documento
 
 };
 
-void mostrarFila(Docentes docentes, int indice);
-void filtrarDocente(Docentes docentes, string nombre);
+void mostrarFila(Docente docente, int indice);
+void filtrarDocente(Docente docente, string nombre);
+Docente cargarDocente(string filename);
