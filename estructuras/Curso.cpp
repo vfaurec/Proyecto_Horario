@@ -21,7 +21,7 @@ void filtrarCurso(Curso curso, string nombre){
     }
 }
 
-Curso cargarCurso(string filename){
+Curso cargarArchivoCurso(string filename){
     Curso curso;
     xlnt::workbook CursosXlsx;
     try

@@ -23,4 +23,4 @@ struct Docente
 
 void mostrarFila(Docente docente, int indice);
 void filtrarDocente(Docente docente, string nombre);
-Docente cargarDocente(string filename);
+Docente cargarArchivoDocente(string filename);

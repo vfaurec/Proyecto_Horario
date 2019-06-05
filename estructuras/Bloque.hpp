@@ -1,12 +1,13 @@
+/*La siguiente estructura se encarga de hacer la selección final de la sala, el curso y el profesor*/
+
 #pragma once
 #include<vector>
 #include<string>
 #include<iostream>
 #include "Sala.hpp"
+#include "Bloque.hpp"
 
 using namespace std;
-
-/*La siguiente estructura se encarga de hacer la selección final de la sala, el curso y el profesor*/
 
 struct Bloque
 {
@@ -17,3 +18,5 @@ struct Bloque
     vector<bool> estado;
 
 };
+
+//void obtenerSala(Bloque bloque[], Sala Sala, string filename);

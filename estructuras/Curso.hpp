@@ -19,5 +19,5 @@ struct Curso
 
 void mostrarFila(Curso curso, int indice);
 void filtrarCurso(Curso curso, string nombre);
-Curso cargarCurso(string filename);
+Curso cargarArchivoCurso(string filename);
 

@@ -10,11 +10,12 @@ using namespace std;
 
 int main(){
     
-    Bloque bloque;
+    //Bloque bloque[42];
+    //vector<Sala> salas; //vector de tipo sala que contiene los datos de salas.xlsx
 
-    Docente docente = cargarDocente("archivos/Docentes.xlsx");
-    Curso curso = cargarCurso("archivos/Cursos.xlsx");
-    Sala sala = cargarSala("archivos/Salas.xlsx");
+    Docente docente = cargarArchivoDocente("archivos/Docentes.xlsx");
+    Curso curso = cargarArchivoCurso("archivos/Cursos.xlsx");
+    Sala sala = cargarArchivoSala("archivos/Salas.xlsx");
     
     if(docente.check==false){
         cout<<"ERROR: EL archivo DOCENTES no se pudo cargar"<<endl;
@@ -25,6 +26,8 @@ int main(){
     if(sala.check==false){
         cout<<"ERROR: EL archivo SALAS no se pudo cargar"<<endl;
     }
+
+    //obtenerSala(bloque,sala,"archivos/Salas.xlsx");
 
     /*FUNCIONES DE PRUEBA
     mostrarFila(sala,3);

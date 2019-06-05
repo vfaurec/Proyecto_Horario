@@ -17,7 +17,7 @@ void filtrarSala(Sala sala, string edificio){
     }
 }
 
-Sala cargarSala(string filename){
+Sala cargarArchivoSala(string filename){ //cargar el archivo de Salas
     Sala sala;
     xlnt::workbook SalasXlsx;
     try
@@ -29,11 +29,25 @@ Sala cargarSala(string filename){
             sala.edificio.push_back(row[0].to_string());
             sala.sala.push_back(row[1].to_string());
         }
+        //si la carga se hizo con exito, deja el estado de true
         sala.check=true;
-        return sala;
+        //retorna un objeto de tipo sala
+        return sala; 
     }
+    //sino se cargó correctamente, lanza una excepción
     catch(const std::exception& e)
     {
         std::cerr<< e.what()<<endl;
     } 
 }
+
+Sala datosArchivoSala(){ //función que guarda los datos del archivo sala en un vector
+    vector<Sala> salas;
+    
+
+
+
+    
+}
+
+

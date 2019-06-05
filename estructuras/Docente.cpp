@@ -25,7 +25,7 @@ void filtrarDocente(Docente docente, string nombre){
     }
 }
 
-Docente cargarDocente(string filename){
+Docente cargarArchivoDocente(string filename){
     Docente docente;
     xlnt::workbook DocentesXlsx;
     try

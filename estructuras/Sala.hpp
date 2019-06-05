@@ -15,4 +15,4 @@ struct Sala
 
 void mostrarFila(Sala sala, int indice);
 void filtrarSala(Sala sala, string edificio);
-Sala cargarSala(string filename);
+Sala cargarArchivoSala(string filename);
