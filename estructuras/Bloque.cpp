@@ -1,8 +1,20 @@
 /*Estructura para manejar el vector principal con los bloques y salas que se asignaran*/
 
 #include "Bloque.hpp"
-#include "Sala.hpp"
+#include "SalaXLS.hpp"
 #include <xlnt/xlnt.hpp>
+
+int getPartes(BloqueXLS bloqueXLS){
+    int partes = bloqueXLS.bloques.size/15;
+    int extra = bloqueXLS.bloques.size%15;
+    
+    if(extra > 0){
+        return partes + 1;
+    } else {
+        return partes;
+    }   
+
+}
 
 /*void obtenerSala(Bloque bloque[], Sala Sala,string filename){
     //Al vector de objetos bloques se le asigna una sala a cada uno

@@ -1,9 +1,9 @@
 /*Estructura para manejar archivo cursos.xlnt*/
 
-#include"Curso.hpp"
+#include"CursoXLS.hpp"
 #include<xlnt/xlnt.hpp>
 
-void mostrarFila(Curso curso, int indice){
+void mostrarFila(CursoXLS curso, int indice){
     cout<<"codigo: "<<curso.codigo[indice]<<endl;
     cout<<"nombre: "<<curso.nombre[indice]<<endl;
     cout<<"id_docente: "<<curso.id_docente[indice]<<endl;
@@ -13,7 +13,7 @@ void mostrarFila(Curso curso, int indice){
     cout<<endl;
 }
 
-void filtrarCurso(Curso curso, string nombre){
+void filtrarCurso(CursoXLS curso, string nombre){
     for(int i=1;i<curso.nombre.size();i++){
         if(curso.nombre[i]== nombre){
             mostrarFila(curso,i);
@@ -21,13 +21,13 @@ void filtrarCurso(Curso curso, string nombre){
     }
 }
 
-Curso cargarArchivoCurso(string filename){
-    Curso curso;
-    xlnt::workbook CursosXlsx;
+CursoXLS cargarArchivoCurso(string filename){
+    CursoXLS curso;
+    xlnt::workbook archivo;
     try
     {
-        CursosXlsx.load(filename);
-        auto wc = CursosXlsx.active_sheet();
+        archivo.load(filename);
+        auto wc = archivo.active_sheet();
         for (auto row : wc.rows(false)) 
         { 
             curso.codigo.push_back(row[0].to_string());

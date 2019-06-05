@@ -4,19 +4,29 @@
 #include<vector>
 #include<string>
 #include<iostream>
-#include "Sala.hpp"
+#include "SalaXLS.hpp"
+#include "CursoXLS.hpp"
+#include "DocenteXLS.hpp"
 #include "Bloque.hpp"
 
 using namespace std;
 
-struct Bloque
-{
-    vector<string> edificio;
-    vector<string> sala;
-    vector<string> id_docente;
-    vector<string> codigo_curso;
-    vector<bool> estado;
+struct BloqueXLS {
+    string nombre;
+    vector<Bloque> bloques;
+    int partes;
+}
 
+//
+struct Bloque {
+    string edificio;
+    string sala;
+    string id_docente;
+    string codigo_curso;
+    bool estado;
 };
+
+
+int setPartes(vector<Bloque> bloques);
 
 //void obtenerSala(Bloque bloque[], Sala Sala, string filename);

@@ -1,16 +1,16 @@
 /*Estructura para manejar archivo salas.xlnt*/
 
-#include"Sala.hpp"
+#include"SalaXLS.hpp"
 #include<xlnt/xlnt.hpp>
 #include<string>
 
-void mostrarFila(Sala sala, int indice){
+void mostrarFila(SalaXLS sala, int indice){
     cout<<"edificio: "<<sala.edificio[indice]<<endl;
     cout<<"sala: "<<sala.sala[indice]<<endl;
     cout<<endl;
 }
 
-void filtrarSala(Sala sala, string edificio){
+void filtrarSalaXLS(SalaXLS sala, string edificio){
     for(int i=1;i<sala.edificio.size();i++){
         if(sala.edificio[i]== edificio){
             mostrarFila(sala,i);
@@ -19,13 +19,13 @@ void filtrarSala(Sala sala, string edificio){
 }
 
 
-Sala cargarArchivoSala(string filename){  //cargar el archivo de Salas
-    Sala salas;
-    xlnt::workbook SalasXlsx;
+SalaXLS cargarArchivoSala(string filename){  //cargar el archivo de SalaXLSs
+    SalaXLS salas;
+    xlnt::workbook archivo;
     try
     {   
-        SalasXlsx.load(filename);
-        auto ws = SalasXlsx.active_sheet();
+        archivo.load(filename);
+        auto ws = archivo.active_sheet();
         for (auto row : ws.rows(false)) 
         { 
             salas.edificio.push_back(row[0].to_string());
@@ -43,16 +43,21 @@ Sala cargarArchivoSala(string filename){  //cargar el archivo de Salas
     } 
 }
 
+// DE salasXLS a BloqueXLS se asigna un sala y edificio
+// por celda (fila/indice)
 
-/*vector<Sala> cargarArchivoSala(string filename, int &numero_filas_sala, vector<Sala> vector_datos_sala){  
-//cargar el archivo de Salas y devolver un vector con los datos 
-    Sala salas;
+
+
+
+/*vector<SalaXLS> cargarArchivoSalaXLS(string filename, int &numero_filas_sala, vector<SalaXLS> vector_datos_sala){  
+//cargar el archivo de SalaXLSs y devolver un vector con los datos 
+    SalaXLS salas;
     numero_filas_sala=0;
-    xlnt::workbook SalasXlsx;
+    xlnt::workbook SalaXLSsXlsx;
     try
     {   
-        SalasXlsx.load(filename);
-        auto ws = SalasXlsx.active_sheet();
+        SalaXLSsXlsx.load(filename);
+        auto ws = SalaXLSsXlsx.active_sheet();
         for (auto row : ws.rows(false)) 
         { 
             salas.edificio.push_back(row[0].to_string());
@@ -75,13 +80,14 @@ Sala cargarArchivoSala(string filename){  //cargar el archivo de Salas
     } 
 }*/
 
-vector<Sala> datosArchivoSala(vector<Sala> sala_dato, string filename){ 
+
+SalaXLS datosArchivoSalaXLS(string filename){ 
 //función que guarda los datos del archivo sala en un objeto tipo sala y lo retorna
-    xlnt::workbook SalasXlsx; 
-    Sala salas;
+    xlnt::workbook SalaXLSsXlsx; 
+    SalaXLS salas;
     int i=0;
-    SalasXlsx.load(filename);
-    auto ws = SalasXlsx.active_sheet();
+    SalaXLSsXlsx.load(filename);
+    auto ws = SalaXLSsXlsx.active_sheet();
     auto row = ws.rows();
         //llenar vector 
         for (auto row : ws.rows(false)) 

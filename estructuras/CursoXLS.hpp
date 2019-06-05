@@ -5,7 +5,7 @@
 
 using namespace std;
 
-struct Curso
+struct CursoXLS
 {
     vector<string> codigo;
     vector<string> nombre;
@@ -17,7 +17,7 @@ struct Curso
 
 };
 
-void mostrarFila(Curso curso, int indice);
-void filtrarCurso(Curso curso, string nombre);
-Curso cargarArchivoCurso(string filename);
+void mostrarFila(CursoXLS curso, int indice);
+void filtrarCurso(CursoXLS curso, string nombre);
+CursoXLS cargarArchivoCurso(string filename);
 
