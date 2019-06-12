@@ -4,7 +4,7 @@
 #include "SalaXLS.hpp"
 #include <xlnt/xlnt.hpp>
 
-int getPartes(BloqueXLS bloqueXLS){
+/*int getPartes(BloqueXLS bloqueXLS){
     int partes = bloqueXLS.bloques.size/15;
     int extra = bloqueXLS.bloques.size%15;
     
@@ -15,6 +15,7 @@ int getPartes(BloqueXLS bloqueXLS){
     }   
 
 }
+*/
 
 /*void obtenerSala(Bloque bloque[], Sala Sala,string filename){
     //Al vector de objetos bloques se le asigna una sala a cada uno
@@ -29,3 +30,16 @@ int getPartes(BloqueXLS bloqueXLS){
         cout << endl;
     }
 }*/
+
+void asignarSalaXLS(SalaXLS sala, Bloque objeto, vector<Bloque> vector){
+    //Obtengo los datos de las salas y los asigno en vector_final
+        for(int j=0; j <sala.edificio.size(); j++){
+            cout << "Bloque "<< j <<endl;
+            objeto.edificio = sala.edificio[j];
+            objeto.sala = sala.sala[j];
+            vector.push_back(objeto);
+            cout << "edificio: " << vector[j].edificio<< endl;
+            cout << "sala: " << vector[j].sala<<endl;
+            cout << "\n ******************** \n"<<endl;
+        }
+}

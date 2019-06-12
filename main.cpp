@@ -7,48 +7,39 @@
 #include"estructuras/SalaXLS.hpp"
 #include"estructuras/Bloque.hpp"
 
-
 using namespace std;
 
 int main(){
     
-    //Bloque bloque[42];
-    int filas_archivo_salas;
-    
+    int filas_archivo_salasXls;
+
+    /* VERIFICO LA CARGA DE LOS ARCHIVOS EXCEL */
+    cout<<"\nCARGA DE ARCHIVOS EXCEL \n"<<endl;
 
     DocenteXLS docente = cargarArchivoDocente("archivos/Docentes.xlsx");
+    if(!docente.check) cout<<" * ERROR * --> EL archivo DOCENTES no se pudo cargar"<<endl;
+        else cout<<"---> Archivo DOCENTES cargado con EXITO"<<endl;
+
     CursoXLS curso = cargarArchivoCurso("archivos/Cursos.xlsx");
-    SalaXLS sala = cargarArchivoSala("archivos/Salas.xlsx");
+    if(!curso.check) cout<<" * ERROR * --> EL archivo CURSOS no se pudo cargar"<<endl;
+        else cout<<"---> Archivo CURSOS cargado con EXITO"<<endl;
 
-    //*******************************
+    SalaXLS sala = cargarArchivoSalaXLS(filas_archivo_salasXls,"archivos/Salas.xlsx");
+    if(!sala.check) cout<<" * ERROR * --> EL archivo SALAS no se pudo cargar"<<endl;
+        else cout<<"---> Archivo SALAS cargado con EXITO"<<endl;
 
-    SalaXLS datos_sala;
+    cout<<"\n"<<endl;
 
-    datos_sala = datosArchivoSala(datos_sala,"archivos/Salas.xlsx");
+     /* Desde el archivo SALAS obtengo:
+        edificio, sala
+        y las asigno a un vector de estructuras Bloque (vector de salida) */
 
-        for (int i=0;i<=datos_sala.size();i++) { 
-            cout<<"Dato ["<<i+1<<"]: "<<endl;
-            /*for(int j=0; j<=datos_sala[i].edificio.size();j++){
-                cout<<"Edificio: "<<datos_sala[i].edificio[j]<<endl;
-                cout<<"Sala: "<<datos_sala[i].sala[j]<<endl;
-            }*/
-            mostrarFila(datos_sala[i],i);
-            cout<<endl;
-        }
-    
+    cout<<"\nASIGNAR DATOS DE ARCHIVO SALAS A VECTOR BLOQUE\n"<<endl;
 
-    //*******************************
+    Bloque objeto_bloque;
+    vector<Bloque> vector_final;
 
-    
-    if(docente.check==false){
-        cout<<"ERROR: EL archivo DOCENTES no se pudo cargar"<<endl;
-    }
-    if(curso.check==false){
-        cout<<"ERROR: EL archivo CURSOS no se pudo cargar"<<endl;
-    }
-    if(!sala.check){
-        cout<<"ERROR: EL archivo SALAS no se pudo cargar"<<endl;
-    }
-    
+    asignarSalaXLS(sala, objeto_bloque, vector_final);
+
     return 0;
 }

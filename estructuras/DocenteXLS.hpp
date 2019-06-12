@@ -5,12 +5,12 @@
 
 using namespace std;
 
-struct Docente {
+/*struct Docente {
     string id_docente;
     string nombre;
     string apellido;
     int horas = 0;
-}
+};*/
 
 /**
  * Struct DocenteRow {

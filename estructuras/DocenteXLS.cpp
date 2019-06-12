@@ -20,7 +20,7 @@ void mostrarFila(DocenteXLS docente, int indice){
 /*
 *   Retorna los docentes disponibles en el bloque indicado (1-7)
 */
-vector<Docente> filtrarBloque(DocenteXLS docenteXLS, int bloque){
+/*vector<Docente> filtrarBloque(DocenteXLS docenteXLS, int bloque){
     vector<Docente> disponibles;
     Docente docente;
     if(bloque < 8 && bloque > 0){
@@ -98,7 +98,7 @@ vector<Docente> filtrarBloque(DocenteXLS docenteXLS, int bloque){
         }
     }
     return disponibles;
-}
+}*/
 
 
 

@@ -11,13 +11,6 @@
 
 using namespace std;
 
-struct BloqueXLS {
-    string nombre;
-    vector<Bloque> bloques;
-    int partes;
-}
-
-//
 struct Bloque {
     string edificio;
     string sala;
@@ -26,7 +19,6 @@ struct Bloque {
     bool estado;
 };
 
-
-int setPartes(vector<Bloque> bloques);
-
+//int setPartes(vector<BloqueXLS> bloques);
 //void obtenerSala(Bloque bloque[], Sala Sala, string filename);
+void asignarSalaXLS(SalaXLS sala, Bloque objeto, vector<Bloque> vector);
