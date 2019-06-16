@@ -30,7 +30,7 @@ int main(){
 
     cout<<"\n"<<endl;
 
-     /* Desde el archivo SALAS obtengo:
+    /* Desde el archivo SALAS obtengo:
         edificio, sala
         y las asigno a un vector de estructuras Bloque (vector de salida) */
 
@@ -40,6 +40,21 @@ int main(){
     vector<Bloque> vector_final;
 
     asignarSalaXLS(sala, objeto_bloque, vector_final);
+
+    cout<<"\n"<<endl;
+
+    /* Desde el archivo DOCENTES:
+        creo un vector con los profesores disponibles según un bloque y los asigno*/
+
+    cout<<"\nFILTRO PROFESORES DISPONIBLES Y LOS ASIGNO A CADA CELDA DEL HORARIO\n"<<endl;
+
+    //asignarProfesoresDisponibles(curso,docente,vector_final);
+    //string sala_excel = "M1-101";
+    //crearformatoExcel(sala_excel);
+
+    
+
+    asignarProfesoresDisponibles(curso,docente,vector_final);
 
     return 0;
 }

@@ -13,10 +13,20 @@ void mostrarFila(CursoXLS curso, int indice){
     cout<<endl;
 }
 
-void filtrarCurso(CursoXLS curso, string nombre){
+/*void filtrarCurso(CursoXLS curso, string nombre){
     for(int i=1;i<curso.nombre.size();i++){
         if(curso.nombre[i]== nombre){
             mostrarFila(curso,i);
+        }
+    }
+}*/
+
+string filtrarCurso(CursoXLS curso, string identificador){
+    for(int i=1;i<curso.nombre.size();i++){
+        if(curso.codigo[i] == identificador){
+            return curso.codigo[i];
+        }else{
+            cout << "No existe ningun curso para ese id_docente"<< endl;
         }
     }
 }
