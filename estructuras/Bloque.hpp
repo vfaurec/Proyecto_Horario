@@ -27,6 +27,6 @@ struct Bloque {
 
 void asignarSalaXLS(SalaXLS sala, Bloque objeto, vector<Bloque> vector);
 void asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes, vector<Bloque> vector_salida);
-void crearformatoExcel(Bloque objeto, string sala);
+void crearformatoExcel(Bloque objeto[], string sala);
 //int setPartes(vector<BloqueXLS> bloques);
 //void obtenerSala(Bloque bloque[], Sala Sala, string filename);

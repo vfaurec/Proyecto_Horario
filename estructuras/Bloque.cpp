@@ -6,60 +6,66 @@
 void asignarSalaXLS(SalaXLS sala, Bloque objeto, vector<Bloque> vector){
     //Obtengo los datos de las salas y los asigno en vector_final
         for(int j=0; j <sala.edificio.size(); j++){
-            cout << "Bloque "<< j <<endl;
+            //cout << "Bloque "<< j <<endl;
             objeto.edificio = sala.edificio[j];
             objeto.sala = sala.sala[j];
             vector.push_back(objeto);
-            cout << "edificio: " << vector[j].edificio<< endl;
-            cout << "sala: " << vector[j].sala<<endl;
-            cout << "\n ******************** \n"<<endl;
+            //cout << "edificio: " << vector[j].edificio<< endl;
+            //cout << "sala: " << vector[j].sala<<endl;
+            //cout << "\n ******************** \n"<<endl;
         }
+        cout << "SALAS asignadas" << endl;
 }
 
-/*FUNCION QUE VERIFICA LOS PROFESORES DISPONIBLES Y LOS ASIGNA A CADA BLOQUE*/
+/*FUNCION QUE VERIFICA LOS PROFESORES DISPONIBLES Y LOS ASIGNA A CADA BLOQUE (POR HOJA)*/
 void asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes, vector<Bloque> vector_salida){
     
     vector<DocenteXLS> disponibles;
-    Bloque objeto;
     string codigo_curso;
-    xlnt::workbook horarios; //creo un excel de salida
-    xlnt::worksheet hoja = horarios.active_sheet(); //activo la primera hora
+    Bloque objeto[38]; //objeto donde se guardan los datos para el excel
+    int i=1;
 
-    cout<<"LLEGO HASTA ACAAAA*************"<<endl;
-
-    
-    cout<<"estado objeto: "<<objeto.estado<<endl;
-    for(int j=0; j<=39; j++){ //ciclos en torno a las celdas de cada hoja
-            for(int i=0;i<=7;i++){ //recorre los bloques del uno al 7 en la primera hoja : lunes
-                disponibles = filtrarBloque(docentes,i+1);
-                
-                if(objeto.estado==false){ //si el bloque no esta asignado
-                    string identificador = disponibles[i].id_docente[i];
-                    //Busco ramo segun id_docente y lo asigno
-                    codigo_curso = filtrarCurso(curso, identificador);
-                    objeto.codigo_curso.push_back(codigo_curso); 
-                    //le cambio el estado a ocupado = true
-                    objeto.estado=true;
-                    //guardo los nuevos datos en el vector de salida
-                    vector_salida.push_back(objeto);
-                }
+    for(int j=0; j<=38; j++){ //ciclosde bloques por hoja
+            if(i>=7){ //verifica el contador de bloques diarios
+                i=1;
             }
-            string sala = objeto.edificio + "-" + objeto.sala;
-            crearformatoExcel(objeto,sala);
-    }   
-
+            cout<<"LLEGO HASTA ACAAAA*************"<<endl;
+            if(vector_salida[j].estado==false){ //si el bloque no esta asignado a ningun profesor
+                //busco profesores disponibles en el bloque i
+                disponibles = filtrarBloque(docentes,i);
+                string identificador = disponibles[i].id_docente[i];
+                //Busco ramo segun id_docente y lo asigno
+                codigo_curso = filtrarCurso(curso, identificador);
+                vector_salida[j].codigo_curso.push_back(codigo_curso); 
+                //le cambio el estado a ocupado = true
+                vector_salida[j].estado=true;
+                //guardo los nuevos datos en el vector de salida
+                vector_salida.push_back(objeto[j]);
+            }
+            i++;
+    }
+    string sala = vector_salida[0].edificio + "-" + vector_salida[0].sala;
+    //Crea horario en excel (formato de salida) para una sala en especifico
+    crearformatoExcel(objeto,sala);
 }
 
-void crearformatoExcel(Bloque objeto, string sala){
+void crearformatoExcel(Bloque objeto[], string nombre_hoja){
+
+    int i;
+    string celda;
+
     xlnt::workbook excelSalida; //creo un excel de salida
     xlnt::worksheet hoja = excelSalida.active_sheet(); //activo la primera hora
-    hoja.title(sala); //nombre de la sala correspondiente
+
+    hoja.title(nombre_hoja); //nombre de la sala correspondiente
+
     hoja.cell("C2").value("Lunes");
     hoja.cell("D2").value("Martes");
     hoja.cell("E2").value("Miercoles");
     hoja.cell("F2").value("Jueves");
     hoja.cell("G2").value("Viernes");
     hoja.cell("H2").value("Sabado");
+
     hoja.cell("B3").value("Bloque 1");
     hoja.cell("B4").value("Bloque 2");
     hoja.cell("B5").value("Bloque 3");
@@ -67,12 +73,45 @@ void crearformatoExcel(Bloque objeto, string sala){
     hoja.cell("B7").value("Bloque 5");
     hoja.cell("B8").value("Bloque 6");
     hoja.cell("B9").value("Bloque 7");
-    //lleno una fila (dia de la semana) 
-    for(int i=0; i<=6; i++){
-        string sala = objeto.id_docente[i] + "-" + objeto.codigo_curso[i];
-        hoja.cell("C3").value(sala);
+
+    //lleno el horario de la semana 
+
+    for(i=0;i<=6;i++){
+        celda = objeto[i].id_docente[i] + "-" + objeto[i].codigo_curso[i];
+        hoja.cell("C3").value(celda);
         hoja.next_row();
     }
+        
+    for(i=7;i<=13;i++){
+        celda = objeto[i].id_docente[i] + "-" + objeto[i].codigo_curso[i];
+        hoja.cell("D3").value(celda);
+        hoja.next_row();
+    }
+
+    for(i=14;i<=20;i++){
+        celda = objeto[i].id_docente[i] + "-" + objeto[i].codigo_curso[i];
+        hoja.cell("E3").value(celda);
+        hoja.next_row();
+    }
+
+    for(i=21;i<=27;i++){
+        celda = objeto[i].id_docente[i] + "-" + objeto[i].codigo_curso[i];
+        hoja.cell("F3").value(celda);
+        hoja.next_row();
+    }
+
+    for(i=28;i<=34;i++){
+        celda = objeto[i].id_docente[i] + "-" + objeto[i].codigo_curso[i];
+        hoja.cell("G3").value(celda);
+        hoja.next_row();
+    }
+
+    for(i=35;i<=39;i++){
+        celda = objeto[i].id_docente[i] + "-" + objeto[i].codigo_curso[i];
+        hoja.cell("H3").value(celda);
+        hoja.next_row();
+    }
+
     excelSalida.save("HORARIOS.xlsx");
 }
 

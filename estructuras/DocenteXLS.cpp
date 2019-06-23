@@ -44,8 +44,6 @@ vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
                 for (int i = 0; i < docenteXLS.id_docente.size(); i++){
                     if(docenteXLS.bloque1[i] == palabra){
                         docente.id_docente[i] = docenteXLS.id_docente[i];
-                        //docente.nombre[i] = docenteXLS.nombre[i];
-                        //docente.apellido[i] = docenteXLS.apellido[i];
                         disponibles.push_back(docente);
                     }
                 }
@@ -54,8 +52,6 @@ vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
                 for (int i = 0; i < docenteXLS.id_docente.size(); i++){
                     if(docenteXLS.bloque2[i] == palabra){
                         docente.id_docente[i] = docenteXLS.id_docente[i];
-                        //docente.nombre[i] = docenteXLS.nombre[i];
-                        //docente.apellido[i] = docenteXLS.apellido[i];
                         disponibles.push_back(docente);
                     }
                 }
@@ -64,8 +60,6 @@ vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
                 for (int i = 0; i < docenteXLS.id_docente.size(); i++){
                     if(docenteXLS.bloque3[i] == palabra){
                         docente.id_docente[i] = docenteXLS.id_docente[i];
-                        //docente.nombre[i] = docenteXLS.nombre[i];
-                        //docente.apellido[i] = docenteXLS.apellido[i];
                         disponibles.push_back(docente);
                     }
                 }
@@ -74,8 +68,6 @@ vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
                 for (int i = 0; i < docenteXLS.id_docente.size(); i++){
                     if(docenteXLS.bloque4[i] == palabra){
                         docente.id_docente[i] = docenteXLS.id_docente[i];
-                        //docente.nombre[i] = docenteXLS.nombre[i];
-                        //docente.apellido[i] = docenteXLS.apellido[i];
                         disponibles.push_back(docente);
                     }
                 }
@@ -84,8 +76,6 @@ vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
                 for (int i = 0; i < docenteXLS.id_docente.size(); i++){
                     if(docenteXLS.bloque5[i] == palabra){
                         docente.id_docente[i] = docenteXLS.id_docente[i];
-                        //docente.nombre[i] = docenteXLS.nombre[i];
-                        //docente.apellido[i] = docenteXLS.apellido[i];
                         disponibles.push_back(docente);
                     }
                 }
@@ -94,8 +84,6 @@ vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
                 for (int i = 0; i < docenteXLS.id_docente.size(); i++){
                     if(docenteXLS.bloque6[i] == palabra){
                         docente.id_docente[i] = docenteXLS.id_docente[i];
-                        //docente.nombre[i] = docenteXLS.nombre[i];
-                        //docente.apellido[i] = docenteXLS.apellido[i];
                         disponibles.push_back(docente);
                     }
                 }
@@ -104,8 +92,6 @@ vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
                 for (int i = 0; i < docenteXLS.id_docente.size(); i++){
                     if(docenteXLS.bloque7[i] == palabra){
                         docente.id_docente[i] = docenteXLS.id_docente[i];
-                        //docente.nombre[i] = docenteXLS.nombre[i];
-                        //docente.apellido[i] = docenteXLS.apellido[i];
                         disponibles.push_back(docente);
                     }
                 }
