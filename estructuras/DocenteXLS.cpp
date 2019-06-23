@@ -101,6 +101,8 @@ vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
     return disponibles;
 }
 
+
+
 /*void mostrarFila(DocenteXLS docente, int indice){
     cout<<"identificador: "<<docente.id_docente[indice]<<endl;
     cout<<"nombre: "<<docente.nombre[indice]<<endl;

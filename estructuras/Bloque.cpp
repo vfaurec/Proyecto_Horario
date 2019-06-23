@@ -3,53 +3,124 @@
 #include "Bloque.hpp"
 #include <xlnt/xlnt.hpp>
 
-void asignarSalaXLS(SalaXLS sala, Bloque objeto, vector<Bloque> vector){
+/*void asignarSalaXLS(SalaXLS sala, Bloque objeto, vector<Bloque> vector){
+
     //Obtengo los datos de las salas y los asigno en vector_final
         for(int j=0; j <sala.edificio.size(); j++){
-            //cout << "Bloque "<< j <<endl;
             objeto.edificio = sala.edificio[j];
             objeto.sala = sala.sala[j];
             vector.push_back(objeto);
-            //cout << "edificio: " << vector[j].edificio<< endl;
-            //cout << "sala: " << vector[j].sala<<endl;
-            //cout << "\n ******************** \n"<<endl;
         }
         cout << "SALAS asignadas" << endl;
+}*/
+
+
+vector<Bloque> asignarSalaXLS(SalaXLS sala, Bloque objeto){
+
+    vector<Bloque> vector;
+
+    //Obtengo los datos de las salas y los asigno en vector_final
+        for(int j=0; j <sala.edificio.size(); j++){
+            objeto.edificio = sala.edificio[j];
+            objeto.sala = sala.sala[j];
+            vector.push_back(objeto);
+        }
+        cout << "SALAS asignadas" << endl;
+        return vector;
 }
 
+
 /*FUNCION QUE VERIFICA LOS PROFESORES DISPONIBLES Y LOS ASIGNA A CADA BLOQUE (POR HOJA)*/
-void asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes, vector<Bloque> vector_salida){
+/*void asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes, string nombre_sala){
     
     vector<DocenteXLS> disponibles;
     string codigo_curso;
     Bloque objeto[38]; //objeto donde se guardan los datos para el excel
     int i=1;
 
-    for(int j=0; j<=38; j++){ //ciclosde bloques por hoja
-            if(i>=7){ //verifica el contador de bloques diarios
+    for(int j=0; j<=38; j++){ //ciclos de bloques por hoja
+
+            if(i>=7){ //verifica el contador de bloques diarios, para funcion filtrarbloque
                 i=1;
             }
-            cout<<"LLEGO HASTA ACAAAA*************"<<endl;
-            if(vector_salida[j].estado==false){ //si el bloque no esta asignado a ningun profesor
+            
+            cout << "LLEGO HASTA ACA******************" << endl;
+
+            if(objeto[j].estado==false){ //si el bloque no esta asignado a ningun profesor
+
                 //busco profesores disponibles en el bloque i
                 disponibles = filtrarBloque(docentes,i);
-                string identificador = disponibles[i].id_docente[i];
+
+                string identificador = disponibles[j].id_docente[j];
+
                 //Busco ramo segun id_docente y lo asigno
                 codigo_curso = filtrarCurso(curso, identificador);
-                vector_salida[j].codigo_curso.push_back(codigo_curso); 
+                objeto[j].codigo_curso.push_back(codigo_curso); 
+
                 //le cambio el estado a ocupado = true
-                vector_salida[j].estado=true;
+                objeto[j].estado=true;
+
                 //guardo los nuevos datos en el vector de salida
-                vector_salida.push_back(objeto[j]);
+                //vector_salida.push_back(objeto[j]);
             }
             i++;
     }
-    string sala = vector_salida[0].edificio + "-" + vector_salida[0].sala;
+
+    //string sala = objeto[0].edificio + "-" + vector_salida[0].sala;
     //Crea horario en excel (formato de salida) para una sala en especifico
-    crearformatoExcel(objeto,sala);
+    crearformatoExcel(objeto,nombre_sala);
+}*/
+
+vector<Bloque> asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes, vector<Bloque> vector_f){
+
+    vector<DocenteXLS> disponibles;
+    string codigo_curso;
+    //vector<Bloque> objeto; //objeto donde se guardan los datos para el excel
+    int dia=1;
+
+    for(int j=0; j<=38; j++){ //ciclos de bloques por hoja
+
+            if(dia>7){ //verifica el contador de bloques diarios, para funcion filtrarbloque
+                dia=1;
+            }
+            
+            if(vector_f[j].estado==false){ //si el bloque no esta asignado a ningun profesor
+                
+                cout << "LLEGO HASTA ACA******************" << endl;
+                
+                //obtengo profes disponibles segun un bloque "dia"
+                disponibles = filtrarBloque(docentes,dia);
+                
+                
+               
+
+                string identificador = disponibles[0].id_docente[0]; //obtengo el primero disponible
+                cout << "id_docente disponible: " <<identificador << endl;
+
+                //Busco ramo segun id_docente y lo asigno
+                codigo_curso = filtrarCurso(curso, identificador);
+                cout << "Curso disponible " << codigo_curso << " y lo imparte el docente " << identificador << endl;
+                
+
+                
+
+
+                vector_f[j].codigo_curso.push_back(codigo_curso); 
+
+                //le cambio el estado a ocupado = true
+                vector_f[j].estado=true;
+
+                //guardo los nuevos datos en el vector de salida
+                //vector_salida.push_back(objeto[j]);
+            }
+
+            dia++;
+    }
+    return vector_f;
+    
 }
 
-void crearformatoExcel(Bloque objeto[], string nombre_hoja){
+void crearformatoExcel(vector<Bloque> objeto, string nombre_hoja){
 
     int i;
     string celda;
