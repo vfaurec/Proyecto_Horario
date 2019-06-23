@@ -58,12 +58,13 @@ int main(){
         string nombre_sala = vector_final[i].edificio + " - " + vector_final[i].sala;
         //cout << "La sala es: " <<nombre_sala << endl;
         objeto = asignarProfesoresDisponibles(curso,docente);
+        cout << "Bloque "<< i << endl;
         vector_final.push_back(objeto);
         //Crea horario en excel (formato de salida) para una sala en especifico
         
     }
 
-    //crearformatoExcel(vector_final,nombre_sala);
+    crearformatoExcel(vector_final);
     
     return 0;
 }
