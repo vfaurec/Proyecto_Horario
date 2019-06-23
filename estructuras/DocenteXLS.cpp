@@ -33,6 +33,64 @@ DocenteXLS cargarArchivoDocente(string filename){
     }
 }
 
+string hallarDisponible(DocenteXLS docenteXLS, int bloque){
+    string id_disponible;
+    string palabra = "DISPONIBLE";
+    if(bloque < 8 && bloque > 0){
+        switch(bloque){
+            case 1:
+                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
+                    if(docenteXLS.bloque1[i] == palabra){
+                        return docenteXLS.id_docente[i];
+                    }
+                }
+                break;
+            case 2:
+                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
+                    if(docenteXLS.bloque2[i] == palabra){
+                        return docenteXLS.id_docente[i];
+                    }
+                }
+                break;
+            case 3:
+                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
+                    if(docenteXLS.bloque3[i] == palabra){
+                        return docenteXLS.id_docente[i];
+                    }
+                }
+                break;
+            case 4:
+                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
+                    if(docenteXLS.bloque4[i] == palabra){
+                        return docenteXLS.id_docente[i];
+                    }
+                }
+                break;
+            case 5:
+                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
+                    if(docenteXLS.bloque5[i] == palabra){
+                        return docenteXLS.id_docente[i];
+                    }
+                }
+                break;
+            case 6:
+                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
+                    if(docenteXLS.bloque6[i] == palabra){
+                        return docenteXLS.id_docente[i];
+                    }
+                }
+                break;
+            case 7:
+                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
+                    if(docenteXLS.bloque7[i] == palabra){
+                        return docenteXLS.id_docente[i];
+                    }
+                }
+                break;
+        }
+    }
+}
+
 /*RETORNA LOS DOCENTES DISPONIBLES EN EL BLOQUE INDICADO*/
 vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
     vector<DocenteXLS> disponibles;

@@ -89,12 +89,11 @@ vector<Bloque> asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes,
                 cout << "LLEGO HASTA ACA******************" << endl;
                 
                 //obtengo profes disponibles segun un bloque "dia"
-                disponibles = filtrarBloque(docentes,dia);
-                
+                //disponibles = filtrarBloque(docentes,dia);
                 
                
 
-                string identificador = disponibles[0].id_docente[0]; //obtengo el primero disponible
+                string identificador = hallarDisponible(docentes, dia); //obtengo el primero disponible
                 cout << "id_docente disponible: " <<identificador << endl;
 
                 //Busco ramo segun id_docente y lo asigno
