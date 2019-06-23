@@ -71,7 +71,7 @@ vector<Bloque> asignarSalaXLS(SalaXLS sala, Bloque objeto){
     crearformatoExcel(objeto,nombre_sala);
 }*/
 
-vector<Bloque> asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes, vector<Bloque> vector_f){
+Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes, vector<Bloque> vector_f){
 
     vector<DocenteXLS> disponibles;
     string codigo_curso;
@@ -80,41 +80,46 @@ vector<Bloque> asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes,
 
     for(int j=0; j<=38; j++){ //ciclos de bloques por hoja
 
+            cout << "Celda : " << endl;
+
             if(dia>7){ //verifica el contador de bloques diarios, para funcion filtrarbloque
                 dia=1;
             }
             
             if(vector_f[j].estado==false){ //si el bloque no esta asignado a ningun profesor
                 
-                cout << "LLEGO HASTA ACA******************" << endl;
+                //cout << "LLEGO HASTA ACA******************" << endl;
                 
                 //obtengo profes disponibles segun un bloque "dia"
                 //disponibles = filtrarBloque(docentes,dia);
-                
-               
 
                 string identificador = hallarDisponible(docentes, dia); //obtengo el primero disponible
-                cout << "id_docente disponible: " <<identificador << endl;
+                //cout << "id_docente disponible: " <<identificador << endl;
 
                 //Busco ramo segun id_docente y lo asigno
-                codigo_curso = filtrarCurso(curso, identificador);
-                cout << "Curso disponible " << codigo_curso << " y lo imparte el docente " << identificador << endl;
-                
-
-                
+                codigo_curso = filtrarCursoPorDocente(curso, identificador);
+                //cout << "Curso disponible " << codigo_curso << " y lo imparte el docente " << identificador << endl;
 
 
+                cout << codigo_curso << "|" << identificador <<endl ;
+                vector_f[j].id_docente.push_back(identificador);
                 vector_f[j].codigo_curso.push_back(codigo_curso); 
 
-                //le cambio el estado a ocupado = true
-                vector_f[j].estado=true;
+                if(vector_f[j].id_docente.size()==38){
+                     //le cambio el estado a ocupado = true
+                    vector_f[j].estado=true;
+                }
 
                 //guardo los nuevos datos en el vector de salida
                 //vector_salida.push_back(objeto[j]);
+
+              
             }
 
             dia++;
     }
+    
+
     return vector_f;
     
 }

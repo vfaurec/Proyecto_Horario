@@ -37,7 +37,8 @@ int main(){
     //cout<<"\nASIGNAR DATOS DE ARCHIVO SALAS A VECTOR BLOQUE\n"<<endl;
 
     Bloque objeto_bloque;
-    vector<Bloque> vector_final, objeto;
+    vector<Bloque> vector_final;
+    Bloque objeto;
 
     vector_final = asignarSalaXLS(sala, objeto_bloque);
 
@@ -57,9 +58,12 @@ int main(){
         string nombre_sala = vector_final[i].edificio + " - " + vector_final[i].sala;
         //cout << "La sala es: " <<nombre_sala << endl;
         objeto = asignarProfesoresDisponibles(curso,docente,vector_final);
+        vector_final.push_back(objeto);
         //Crea horario en excel (formato de salida) para una sala en especifico
-        crearformatoExcel(objeto,nombre_sala);
+        
     }
+
+    //crearformatoExcel(vector_final,nombre_sala);
     
     return 0;
 }

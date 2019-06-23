@@ -36,7 +36,7 @@ string filtrarCursoPorDocente(CursoXLS curso, string id_docente){
         if(curso.id_docente[i] == id_docente){
             return curso.codigo[i];
         }else{
-            cout << "No existe ningun curso para ese id_docente"<< endl;
+            //cout << "No existe ningun curso para ese id_docente"<< endl;
         }
     }
 }
