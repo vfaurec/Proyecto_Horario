@@ -20,5 +20,6 @@ struct CursoXLS
 void mostrarFila(CursoXLS curso, int indice);
 //void filtrarCurso(CursoXLS curso, string nombre);
 string filtrarCurso(CursoXLS curso, string identificador);
+string filtrarCursoPorDocente(CursoXLS curso, string id_docente);
 CursoXLS cargarArchivoCurso(string filename);
 

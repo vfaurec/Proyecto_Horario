@@ -31,6 +31,16 @@ string filtrarCurso(CursoXLS curso, string identificador){
     }
 }
 
+string filtrarCursoPorDocente(CursoXLS curso, string id_docente){
+    for(int i=1;i<curso.nombre.size();i++){
+        if(curso.id_docente[i] == id_docente){
+            return curso.codigo[i];
+        }else{
+            cout << "No existe ningun curso para ese id_docente"<< endl;
+        }
+    }
+}
+
 CursoXLS cargarArchivoCurso(string filename){
     CursoXLS curso;
     xlnt::workbook archivo;
