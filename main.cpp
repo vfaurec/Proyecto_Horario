@@ -57,7 +57,7 @@ int main(){
         //cout << "numero de salas: " << filas_archivo_salasXls << endl; 
         string nombre_sala = vector_final[i].edificio + " - " + vector_final[i].sala;
         //cout << "La sala es: " <<nombre_sala << endl;
-        objeto = asignarProfesoresDisponibles(curso,docente,vector_final);
+        objeto = asignarProfesoresDisponibles(curso,docente);
         vector_final.push_back(objeto);
         //Crea horario en excel (formato de salida) para una sala en especifico
         
