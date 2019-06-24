@@ -40,31 +40,32 @@ int main(){
     vector<Bloque> vector_final;
     Bloque objeto;
 
-    vector_final = asignarSalaXLS(sala, objeto_bloque);
+    //vector_final = asignarSalaXLS(sala, objeto_bloque);
 
     //cout<<"\n"<<endl;
 
     /* Desde el archivo DOCENTES:
         creo un vector con los profesores disponibles según un bloque y los asigno*/
 
-    cout<<"\nFILTRO PROFESORES DISPONIBLES Y LOS ASIGNO A CADA CELDA DEL HORARIO\n"<<endl;
+    //cout<<"\nFILTRO PROFESORES DISPONIBLES Y LOS ASIGNO A CADA CELDA DEL HORARIO\n"<<endl;
 
     //asignarProfesoresDisponibles(curso,docente,vector_final);
     //string sala_excel = "M1-101";
     //crearformatoExcel(sala_excel);
 
-    for(int i=1; i<= filas_archivo_salasXls; i++){
+    for(int i=0; i<=filas_archivo_salasXls; i++){
         //cout << "numero de salas: " << filas_archivo_salasXls << endl; 
-        string nombre_sala = vector_final[i].edificio + " - " + vector_final[i].sala;
+        //string nombre_sala = vector_final[i].edificio + " - " + vector_final[i].sala;
         //cout << "La sala es: " <<nombre_sala << endl;
         objeto = asignarProfesoresDisponibles(curso,docente);
-        cout << "Bloque "<< i << endl;
-        vector_final.push_back(objeto);
+        
+        //cout << "Bloque "<< i << endl;
+        vector_final.push_back(asignarProfesoresDisponibles(curso,docente));
         //Crea horario en excel (formato de salida) para una sala en especifico
         
     }
 
-    crearformatoExcel(vector_final);
+    crearformatoExcel(vector_final, sala);
     
     return 0;
 }

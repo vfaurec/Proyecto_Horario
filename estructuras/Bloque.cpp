@@ -3,19 +3,20 @@
 #include "Bloque.hpp"
 #include <xlnt/xlnt.hpp>
 
-/*void asignarSalaXLS(SalaXLS sala, Bloque bloques, vector<Bloque> vector){
+string asignarSala(SalaXLS sala, int i){
 
+    return sala.edificio[i] + " - " + sala.sala[i]; 
     //Obtengo los datos de las salas y los asigno en vector_final
-        for(int j=0; j <sala.edificio.size(); j++){
-            bloques.edificio = sala.edificio[j];
-            bloques.sala = sala.sala[j];
-            vector.push_back(bloques);
-        }
-        cout << "SALAS asignadas" << endl;
-}*/
+    /*for(int j=0; j <sala.edificio.size(); j++){
+        nombre = sala.edificio[j] + " - " + sala.sala[j];
+        nombres.push_back(nombre);
+    }
+    cout << "SALAS asignadas" << endl;
+    return sala.edificio;*/
+}
 
 
-vector<Bloque> asignarSalaXLS(SalaXLS sala, Bloque bloques){
+/*vector<Bloque> asignarSalaXLS(SalaXLS sala, Bloque bloques){
 
     vector<Bloque> vector;
 
@@ -27,7 +28,7 @@ vector<Bloque> asignarSalaXLS(SalaXLS sala, Bloque bloques){
         }
         cout << "SALAS asignadas" << endl;
         return vector;
-}
+}*/
 
 
 /*FUNCION QUE VERIFICA LOS PROFESORES DISPONIBLES Y LOS ASIGNA A CADA BLOQUE (POR HOJA)*/
@@ -76,12 +77,11 @@ Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
     Bloque bloque;
     vector<DocenteXLS> disponibles;
     string codigo_curso;
-    //vector<Bloque> bloques; //bloques donde se guardan los datos para el excel
     int dia=1;
 
     for(int j=0; j<=38; j++){ //ciclos de bloques por hoja
 
-        cout << "Celda : " << j + 1 <<endl;
+        //cout << "Celda : " << j + 1 <<endl;
 
         if(dia>7){ //verifica el contador de bloques diarios, para funcion filtrarbloque
             dia=1;
@@ -102,11 +102,11 @@ Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
             //cout << "Curso disponible " << codigo_curso << " y lo imparte el docente " << identificador << endl;
 
 
-            cout << codigo_curso << "|" << identificador <<endl ;
+            //cout << codigo_curso << "|" << identificador <<endl ;
             bloque.id_docente.push_back(identificador);
             bloque.codigo_curso.push_back(codigo_curso); 
 
-            if(bloque.id_docente.size()==38){
+            if(bloque.id_docente.size()==39){
                     //le cambio el estado a ocupado = true
                 bloque.estado=true;
             }
@@ -117,25 +117,25 @@ Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
 
         dia++;
     }
+    //asignarSalaXLS(sala, bloque);
+    //cout << bloque.codigo_curso[0]<<endl;
     return bloque;
 }
 
-void crearformatoExcel(vector<Bloque> bloques){
+void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
 
     xlnt::workbook excelSalida; //creo un excel de salida
     xlnt::worksheet hoja = excelSalida.active_sheet(); //activo la primera hora
 
-   
+    vector<string> columnas = {"C","D","E","F","G","H"};
 
-    for(int j=0;j<=3;j++){
+    for(int j=0;j<=5;j++){
 
         string celda;
         int i;
 
         //asignar nombre hoja
-        string nombre_hoja = bloques[j].edificio + " - " + bloques[j].sala;
-
-        hoja.title(nombre_hoja); //nombre de la sala correspondiente
+        hoja.title(asignarSala(salas, j));
 
         hoja.cell("C2").value("Lunes");
         hoja.cell("D2").value("Martes");
@@ -154,24 +154,67 @@ void crearformatoExcel(vector<Bloque> bloques){
 
         //lleno el horario de la semana 
 
-        cout << "********************" << endl;
-
-        for(i=0;i<=6;i++){
-            //celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
-            celda = "Celda " + i;
-            hoja.cell("C3").value(celda);
+        //bloque 1
+        for(i=0;i<=5;i++){
+            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
+            hoja.cell(columnas[i]+"3").value(celda);
             hoja.next_row();
         }
-            
 
+        //bloque 2
+        for(i=6;i<=11;i++){
+            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
+            hoja.cell(columnas[i-6]+"4").value(celda);
+            hoja.next_row();
+        }
+
+        //bloque 3
+        for(i=12;i<=17;i++){
+            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
+            hoja.cell(columnas[i-12]+"5").value(celda);
+            hoja.next_row();
+        }
+
+        //bloque 4
+        for(i=18;i<=23;i++){
+            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
+            hoja.cell(columnas[i-18]+"6").value(celda);
+            hoja.next_row();
+        }
+
+        //bloque 5
+        for(i=24;i<=28;i++){
+            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
+            hoja.cell(columnas[i-24]+"7").value(celda);
+            hoja.next_row();
+        }
+
+        //bloque 6
+        for(i=29;i<=33;i++){
+            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
+            hoja.cell(columnas[i-29]+"8").value(celda);
+            hoja.next_row();
+        }
+
+        //bloque 7
+        for(i=34;i<=38;i++){
+            
+            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
+            //cout << i << endl;
+            hoja.cell(columnas[i-34]+"9").value(celda);
+            hoja.next_row();
+        }
+
+        //cout << bloques[5].id_docente[38] << endl;
+    
 
         /*for(i=7;i<=13;i++){
             celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
             hoja.cell("D3").value(celda);
             hoja.next_row();
-        }
+        }*/
 
-        for(i=14;i<=20;i++){
+        /*for(i=14;i<=20;i++){
             celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
             hoja.cell("E3").value(celda);
             hoja.next_row();
@@ -189,7 +232,7 @@ void crearformatoExcel(vector<Bloque> bloques){
             hoja.next_row();
         }
 
-        for(i=35;i<=39;i++){
+        for(i=35;i<=bloques.size();i++){
             celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
             hoja.cell("H3").value(celda);
             hoja.next_row();
