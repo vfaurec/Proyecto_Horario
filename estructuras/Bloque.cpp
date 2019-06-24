@@ -6,71 +6,8 @@
 string asignarSala(SalaXLS sala, int i){
 
     return sala.edificio[i] + " - " + sala.sala[i]; 
-    //Obtengo los datos de las salas y los asigno en vector_final
-    /*for(int j=0; j <sala.edificio.size(); j++){
-        nombre = sala.edificio[j] + " - " + sala.sala[j];
-        nombres.push_back(nombre);
-    }
-    cout << "SALAS asignadas" << endl;
-    return sala.edificio;*/
+
 }
-
-
-/*vector<Bloque> asignarSalaXLS(SalaXLS sala, Bloque bloques){
-
-    vector<Bloque> vector;
-
-    //Obtengo los datos de las salas y los asigno en vector_final
-        for(int j=0; j <sala.edificio.size(); j++){
-            bloques.edificio = sala.edificio[j];
-            bloques.sala = sala.sala[j];
-            vector.push_back(bloques);
-        }
-        cout << "SALAS asignadas" << endl;
-        return vector;
-}*/
-
-
-/*FUNCION QUE VERIFICA LOS PROFESORES DISPONIBLES Y LOS ASIGNA A CADA BLOQUE (POR HOJA)*/
-/*void asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes, string nombre_sala){
-    
-    vector<DocenteXLS> disponibles;
-    string codigo_curso;
-    Bloque bloques[38]; //bloques donde se guardan los datos para el excel
-    int i=1;
-
-    for(int j=0; j<=38; j++){ //ciclos de bloques por hoja
-
-            if(i>=7){ //verifica el contador de bloques diarios, para funcion filtrarbloque
-                i=1;
-            }
-            
-            cout << "LLEGO HASTA ACA******************" << endl;
-
-            if(bloques[j].estado==false){ //si el bloque no esta asignado a ningun profesor
-
-                //busco profesores disponibles en el bloque i
-                disponibles = filtrarBloque(docentes,i);
-
-                string identificador = disponibles[j].id_docente[j];
-
-                //Busco ramo segun id_docente y lo asigno
-                codigo_curso = filtrarCurso(curso, identificador);
-                bloques[j].codigo_curso.push_back(codigo_curso); 
-
-                //le cambio el estado a ocupado = true
-                bloques[j].estado=true;
-
-                //guardo los nuevos datos en el vector de salida
-                //vector_salida.push_back(bloques[j]);
-            }
-            i++;
-    }
-
-    //string sala = bloques[0].edificio + "-" + vector_salida[0].sala;
-    //Crea horario en excel (formato de salida) para una sala en especifico
-    crearformatoExcel(bloques,nombre_sala);
-}*/
 
 Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
 
@@ -81,44 +18,28 @@ Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
 
     for(int j=0; j<=38; j++){ //ciclos de bloques por hoja
 
-        //cout << "Celda : " << j + 1 <<endl;
-
         if(dia>7){ //verifica el contador de bloques diarios, para funcion filtrarbloque
             dia=1;
         }
         
         if(bloque.estado==false){ //si el bloque no esta asignado a ningun profesor
-            
-            //cout << "LLEGO HASTA ACA******************" << endl;
-            
-            //obtengo profes disponibles segun un bloque "dia"
-            //disponibles = filtrarBloque(docentes,dia);
 
             string identificador = hallarDisponible(docentes, dia); //obtengo el primero disponible
-            //cout << "id_docente disponible: " <<identificador << endl;
 
             //Busco ramo segun id_docente y lo asigno
             codigo_curso = filtrarCursoPorDocente(curso, identificador);
-            //cout << "Curso disponible " << codigo_curso << " y lo imparte el docente " << identificador << endl;
 
-
-            //cout << codigo_curso << "|" << identificador <<endl ;
             bloque.id_docente.push_back(identificador);
             bloque.codigo_curso.push_back(codigo_curso); 
 
             if(bloque.id_docente.size()==39){
-                    //le cambio el estado a ocupado = true
+                //le cambio el estado a ocupado = true
                 bloque.estado=true;
             }
-
-            //guardo los nuevos datos en el vector de salida
-            //vector_salida.push_back(bloques[j]);
         }
 
         dia++;
     }
-    //asignarSalaXLS(sala, bloque);
-    //cout << bloque.codigo_curso[0]<<endl;
     return bloque;
 }
 
@@ -129,13 +50,16 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
 
     vector<string> columnas = {"C","D","E","F","G","H"};
 
-    for(int j=0;j<=5;j++){
+
+    cout << bloques.size() << endl;
+
+    for(int j=0;j<53;j++){ //ciclo por cada sala
 
         string celda;
         int i;
 
         //asignar nombre hoja
-        hoja.title(asignarSala(salas, j));
+        hoja.title(asignarSala(salas, j+1));
 
         hoja.cell("C2").value("Lunes");
         hoja.cell("D2").value("Martes");
@@ -205,40 +129,10 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
             hoja.next_row();
         }
 
-        //cout << bloques[5].id_docente[38] << endl;
-    
-
-        /*for(i=7;i<=13;i++){
-            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
-            hoja.cell("D3").value(celda);
-            hoja.next_row();
-        }*/
-
-        /*for(i=14;i<=20;i++){
-            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
-            hoja.cell("E3").value(celda);
-            hoja.next_row();
+        if(j < 52){
+            hoja = excelSalida.create_sheet();
         }
-
-        for(i=21;i<=27;i++){
-            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
-            hoja.cell("F3").value(celda);
-            hoja.next_row();
-        }
-
-        for(i=28;i<=34;i++){
-            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
-            hoja.cell("G3").value(celda);
-            hoja.next_row();
-        }
-
-        for(i=35;i<=bloques.size();i++){
-            celda = bloques[j].id_docente[i] + "-" + bloques[j].codigo_curso[i];
-            hoja.cell("H3").value(celda);
-            hoja.next_row();
-        }*/
-
-        hoja = excelSalida.create_sheet();
+        
     }
 
     excelSalida.save("HORARIOS.xlsx");
@@ -254,8 +148,7 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
         return partes;
     }   
 
-}
-*/
+}*/
 
 /*void obtenerSala(Bloque bloque[], Sala Sala,string filename){
     //Al vector de bloquess bloques se le asigna una sala a cada uno

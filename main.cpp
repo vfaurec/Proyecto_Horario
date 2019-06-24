@@ -54,15 +54,8 @@ int main(){
     //crearformatoExcel(sala_excel);
 
     for(int i=0; i<=filas_archivo_salasXls; i++){
-        //cout << "numero de salas: " << filas_archivo_salasXls << endl; 
-        //string nombre_sala = vector_final[i].edificio + " - " + vector_final[i].sala;
-        //cout << "La sala es: " <<nombre_sala << endl;
         objeto = asignarProfesoresDisponibles(curso,docente);
-        
-        //cout << "Bloque "<< i << endl;
-        vector_final.push_back(asignarProfesoresDisponibles(curso,docente));
-        //Crea horario en excel (formato de salida) para una sala en especifico
-        
+        vector_final.push_back(asignarProfesoresDisponibles(curso,docente));        
     }
 
     crearformatoExcel(vector_final, sala);
