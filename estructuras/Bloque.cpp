@@ -4,7 +4,6 @@
 #include <xlnt/xlnt.hpp>
 
 string asignarSala(SalaXLS sala, int i){
-
     return sala.edificio[i] + " - " + sala.sala[i]; 
 
 }
@@ -137,6 +136,8 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
 
     excelSalida.save("HORARIOS.xlsx");
 }
+
+
 
 /*int getPartes(BloqueXLS bloqueXLS){
     int partes = bloqueXLS.bloques.size/15;

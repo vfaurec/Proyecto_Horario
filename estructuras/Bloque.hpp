@@ -22,11 +22,13 @@ struct Bloque {
     string sala;
     vector<string> id_docente;
     vector<string> codigo_curso;
+    vector<int> horas_curso; 
     bool estado=false;
 };
 
 string asignarSalaXLS(SalaXLS sala, int i);
 Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes);
 void crearformatoExcel(vector<Bloque> objeto, SalaXLS salas);
+
 //int setPartes(vector<BloqueXLS> bloques);
 //void obtenerSala(Bloque bloque[], Sala Sala, string filename);

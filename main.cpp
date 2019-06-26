@@ -11,8 +11,6 @@ using namespace std;
 
 int main(){
 
-
-    
     int filas_archivo_salasXls;
 
     /* VERIFICO LA CARGA DE LOS ARCHIVOS EXCEL */
@@ -42,6 +40,7 @@ int main(){
     vector<Bloque> vector_final;
     Bloque objeto;
 
+
     //vector_final = asignarSalaXLS(sala, objeto_bloque);
 
     //cout<<"\n"<<endl;
@@ -55,12 +54,20 @@ int main(){
     //string sala_excel = "M1-101";
     //crearformatoExcel(sala_excel);
 
-    for(int i=0; i<=filas_archivo_salasXls; i++){
+    /*for(int i=0; i<=filas_archivo_salasXls; i++){
         objeto = asignarProfesoresDisponibles(curso,docente);
         vector_final.push_back(asignarProfesoresDisponibles(curso,docente));        
     }
 
-    crearformatoExcel(vector_final, sala);
+    crearformatoExcel(vector_final, sala);*/
+
+    
+    vector<string> id_docentes;
+    id_docentes = filtroBloqueDia(4,"Viernes");
+
+    for(int i=0; i<id_docentes.size();i++){
+        cout << "dato: " << i+1 << " " << id_docentes[i] << endl;
+    }
     
     return 0;
 }

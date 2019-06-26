@@ -47,5 +47,7 @@ struct DocenteXLS
 DocenteXLS cargarArchivoDocente(string filename);
 vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque);
 string hallarDisponible(DocenteXLS docenteXLS, int bloque);
+vector<string> filtroBloqueDia(int bloque, string dia);
+DocenteXLS cargarPorDia(string filename, string dia);
 //void mostrarFila(DocenteXLS docente, int indice);
 //void filtrarDocente(DocenteXLS docente, string nombre);
