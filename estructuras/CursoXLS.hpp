@@ -22,4 +22,5 @@ void mostrarFila(CursoXLS curso, int indice);
 string filtrarCurso(CursoXLS curso, string identificador);
 string filtrarCursoPorDocente(CursoXLS curso, string id_docente);
 CursoXLS cargarArchivoCurso(string filename);
+int filtrarHorasPorCurso(CursoXLS curso, string codigo_curso);
 

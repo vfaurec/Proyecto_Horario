@@ -22,7 +22,7 @@ struct Bloque {
     string sala;
     vector<string> id_docente;
     vector<string> codigo_curso;
-    vector<int> horas_curso; 
+    //vector<int> horas_curso; 
     bool estado=false;
 };
 

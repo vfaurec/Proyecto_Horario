@@ -14,7 +14,7 @@ int main(){
     int filas_archivo_salasXls;
 
     /* VERIFICO LA CARGA DE LOS ARCHIVOS EXCEL */
-    cout<<"\nCARGA DE ARCHIVOS EXCEL \n"<<endl;
+    //cout<<"\nCARGA DE ARCHIVOS EXCEL \n"<<endl;
 
     DocenteXLS docente = cargarArchivoDocente("archivos/Docentes.xlsx");
     if(!docente.check) cout<<" * ERROR * --> EL archivo DOCENTES no se pudo cargar"<<endl;
@@ -60,14 +60,36 @@ int main(){
     }
 
     crearformatoExcel(vector_final, sala);*/
-
     
     vector<string> id_docentes;
-    id_docentes = filtroBloqueDia(4,"Viernes");
+    vector<string> codigo_curso;
+    vector<int> horas_semanales;
 
-    for(int i=0; i<id_docentes.size();i++){
-        cout << "dato: " << i+1 << " " << id_docentes[i] << endl;
-    }
+    string codigo;
+    int hora;
+
+    //id_docentes = filtroBloqueDia(2,"Lunes");
+
+    /*for(int i=0; i<id_docentes.size();i++){
+
+        cout << "dato: " << i+1 << endl;
+        
+
+        codigo = filtrarCursoPorDocente(curso,id_docentes[i]);
+        codigo_curso.push_back(codigo);
+
+        cout << "   id_docente: " << id_docentes[i] << endl;
+        cout << "   codigo curso: " << codigo_curso[i] << endl;
+        
+        hora = filtrarHorasPorCurso(curso,codigo_curso[i]);
+        horas_semanales.push_back(hora);
+        
+        cout << "   horas: " << horas_semanales[i] << endl;
+    }*/
+
+
+
+
     
     return 0;
 }

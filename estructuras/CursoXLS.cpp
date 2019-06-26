@@ -2,6 +2,7 @@
 
 #include"CursoXLS.hpp"
 #include<xlnt/xlnt.hpp>
+#include<string>
 
 void mostrarFila(CursoXLS curso, int indice){
     cout<<"codigo: "<<curso.codigo[indice]<<endl;
@@ -32,13 +33,13 @@ string filtrarCurso(CursoXLS curso, string identificador){
 }
 
 string filtrarCursoPorDocente(CursoXLS curso, string id_docente){
-    for(int i=1;i<curso.nombre.size();i++){
+    string codigo;
+    for(int i=0;i<curso.nombre.size();i++){
         if(curso.id_docente[i] == id_docente){
-            return curso.codigo[i];
-        }else{
-            //cout << "No existe ningun curso para ese id_docente"<< endl;
+           codigo = curso.codigo[i]; 
         }
     }
+    return codigo;
 }
 
 CursoXLS cargarArchivoCurso(string filename){
@@ -65,3 +66,22 @@ CursoXLS cargarArchivoCurso(string filename){
         std::cerr << e.what() << '\n';
     }  
 }
+
+int filtrarHorasPorCurso(CursoXLS curso, string codigo_curso){
+
+    int hora_ramo;
+    
+    for(int i=0;i<curso.codigo.size();i++){
+        
+        if(curso.codigo[i] == codigo_curso){
+            
+          hora_ramo = stoi(curso.bloque[i]); 
+          
+        }
+        
+    }
+    
+    return hora_ramo;
+}
+
+
