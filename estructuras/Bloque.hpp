@@ -32,3 +32,7 @@ void crearformatoExcel(vector<Bloque> objeto, SalaXLS salas);
 
 //int setPartes(vector<BloqueXLS> bloques);
 //void obtenerSala(Bloque bloque[], Sala Sala, string filename);
+
+/* --------------------------------------------------------------------------------------*/
+
+void validacion(vector<string> id_docentes, vector<string> codigos, vector<int> horas, Bloque hoja_excel, CursoXLS curso);

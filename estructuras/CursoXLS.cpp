@@ -3,6 +3,8 @@
 #include"CursoXLS.hpp"
 #include<xlnt/xlnt.hpp>
 #include<string>
+#include<stdlib.h>
+
 
 void mostrarFila(CursoXLS curso, int indice){
     cout<<"codigo: "<<curso.codigo[indice]<<endl;
@@ -67,7 +69,7 @@ CursoXLS cargarArchivoCurso(string filename){
     }  
 }
 
-int filtrarHorasPorCurso(CursoXLS curso, string codigo_curso){
+/*int filtrarHorasPorCurso(CursoXLS curso, string codigo_curso){
 
     int hora_ramo;
     
@@ -82,6 +84,40 @@ int filtrarHorasPorCurso(CursoXLS curso, string codigo_curso){
     }
     
     return hora_ramo;
+}*/
+
+/* --------------------------------------------------------------------------------------*/
+
+vector<string> obtenerCursos(CursoXLS curso){
+
+    vector<string> codigos_cursos;
+
+    /* función que obtiene todos los codigos de los cursos
+        en el archivo del excel y los guarda en un vector */
+
+    for(int i=0; i<curso.codigo.size();i++){
+        codigos_cursos.push_back(curso.codigo[i]);
+    }
+
+    return codigos_cursos;
+
 }
 
+vector<int> obtenerHoras(CursoXLS curso){
 
+    vector<int> horas_semanales;
+    int hora_curso;
+
+    /* función que obtiene todas las horas semanales de cada curso 
+        en el archivo del excel y los guarda en un vector */
+
+    for(int i=0; i<curso.bloque.size();i++){
+        
+        hora_curso = stoi(curso.bloque[i]); 
+        horas_semanales.push_back(hora_curso);
+        
+    }
+
+    return horas_semanales;
+
+}

@@ -24,3 +24,7 @@ string filtrarCursoPorDocente(CursoXLS curso, string id_docente);
 CursoXLS cargarArchivoCurso(string filename);
 int filtrarHorasPorCurso(CursoXLS curso, string codigo_curso);
 
+/* --------------------------------------------------------------------------------------*/
+
+vector<string> obtenerCursos(CursoXLS curso);
+vector<int> obtenerHoras(CursoXLS curso);

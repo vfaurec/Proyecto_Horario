@@ -30,15 +30,9 @@ int main(){
 
     cout<<"\n"<<endl;
 
-    /* Desde el archivo SALAS obtengo:
-        edificio, sala
-        y las asigno a un vector de estructuras Bloque (vector de salida) */
-
-    //cout<<"\nASIGNAR DATOS DE ARCHIVO SALAS A VECTOR BLOQUE\n"<<endl;
-
     Bloque objeto_bloque;
     vector<Bloque> vector_final;
-    Bloque objeto;
+    //Bloque objeto;
 
 
     //vector_final = asignarSalaXLS(sala, objeto_bloque);
@@ -61,12 +55,12 @@ int main(){
 
     crearformatoExcel(vector_final, sala);*/
     
-    vector<string> id_docentes;
+    /*vector<string> id_docentes;
     vector<string> codigo_curso;
     vector<int> horas_semanales;
 
     string codigo;
-    int hora;
+    int hora;*/
 
     //id_docentes = filtroBloqueDia(2,"Lunes");
 
@@ -87,9 +81,35 @@ int main(){
         cout << "   horas: " << horas_semanales[i] << endl;
     }*/
 
+    /* --------------------------------------------------------------------------------------
+            PRUEBA DE MOSTRAR EL LLENADO DE UNA HOJA COMPLETA DEL EXCEL --> BLOQUE*/
 
+    vector<string> id_docentes;
+    vector<string> codigos_cursos;
+    vector<int> horas_semanales;
+    Bloque objeto;
 
+    id_docentes = filtroBloqueDia(2,"Lunes");
 
+    //obtengo todos los codigos de cursos
+    codigos_cursos = obtenerCursos(curso);
+    
+    //obtengo todas las horas de cada curso
+    horas_semanales = obtenerHoras(curso);
+
+    //verifico si la hora de cada curso y su codigo corresponden segun indice
+    for(int i=0; i<codigos_cursos.size(); i++){
+        cout << "dato: " << i+1 << endl;
+        cout << "   codigo-curso: " << codigos_cursos[i] << endl;
+        cout << "   horas: " << horas_semanales[i] << endl;
+        cout << endl;
+    }
+
+    //funcion que asigna y verifica los datos para cada celda del excel
+    for(int i=0; i<39; i++){
+
+        validacion(id_docentes, codigos_cursos, horas_semanales, objeto, curso);
+    }
     
     return 0;
 }
