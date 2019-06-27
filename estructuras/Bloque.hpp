@@ -1,5 +1,3 @@
-/*La siguiente estructura se encarga de hacer la selección final de la sala, el curso y el profesor*/
-
 #pragma once
 #include<vector>
 #include<string>
@@ -26,9 +24,10 @@ struct Bloque {
     bool estado=false;
 };
 
-string asignarSalaXLS(SalaXLS sala, int i);
+
 Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes);
 void crearformatoExcel(vector<Bloque> objeto, SalaXLS salas);
+string asignarSalaXLS(SalaXLS Sala, int i);
 
 //int setPartes(vector<BloqueXLS> bloques);
 //void obtenerSala(Bloque bloque[], Sala Sala, string filename);

@@ -3,10 +3,6 @@
 #include "Bloque.hpp"
 #include <xlnt/xlnt.hpp>
 
-string asignarSala(SalaXLS sala, int i){
-    return sala.edificio[i] + " - " + sala.sala[i]; 
-
-}
 
 Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
 
@@ -40,6 +36,10 @@ Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
         dia++;
     }
     return bloque;
+}
+
+string asignarSala(SalaXLS Sala, int i){ //retorna un strign con el nombre de una sala concreta
+    return Sala.edificio[i] + " - " + Sala.sala[i]; 
 }
 
 void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
@@ -136,6 +136,7 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
 
     excelSalida.save("HORARIOS.xlsx");
 }
+
 
 
 /*int getPartes(BloqueXLS bloqueXLS){

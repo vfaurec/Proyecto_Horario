@@ -1,34 +1,11 @@
 #pragma once
 #include<vector>
-#include<string>
+#include<string.h>
 #include<iostream>
 
 using namespace std;
 
-/*struct Docente {
-    string id_docente;
-    string nombre;
-    string apellido;
-    int horas = 0;
-};*/
-
-/**
- * Struct DocenteRow {
- *  string id_docente;
-    string nombre;
-    string apellido;
-    string bloque1;
-    string bloque2;
-    string bloque3;
-    string bloque4;
-    string bloque5;
-    string bloque6;
-    string bloque7;
- * }
- * vector<DocenteRow> docenteRow
-*/
-
-struct DocenteXLS
+struct DocenteXLS //estructura que representa al archivo Docentes.xlsx
 {
     vector<string> id_docente;
     vector<string> nombre;
@@ -40,14 +17,16 @@ struct DocenteXLS
     vector<string> bloque5;
     vector<string> bloque6;
     vector<string> bloque7;
-    bool check =false; //verifica carga del documento
+    bool check =false; //verifica carga exitosa o no del documento
 
 };
 
 DocenteXLS cargarArchivoDocente(string filename);
+
+/* --------------------------------------------------------------------------------------*/
+
 vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque);
 string hallarDisponible(DocenteXLS docenteXLS, int bloque);
 vector<string> filtroBloqueDia(int bloque, string dia);
 DocenteXLS cargarPorDia(string filename, string dia);
-//void mostrarFila(DocenteXLS docente, int indice);
-//void filtrarDocente(DocenteXLS docente, string nombre);
+
