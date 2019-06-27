@@ -106,15 +106,15 @@ vector<string> obtenerCursos(CursoXLS curso){
 vector<int> obtenerHoras(CursoXLS curso){
 
     vector<int> horas_semanales;
-    int hora_curso;
+    int hora;
 
     /* función que obtiene todas las horas semanales de cada curso 
         en el archivo del excel y los guarda en un vector */
 
     for(int i=0; i<curso.bloque.size();i++){
         
-        hora_curso = stoi(curso.bloque[i]); 
-        horas_semanales.push_back(hora_curso);
+        hora = stoi(curso.bloque[i]);
+        horas_semanales.push_back(hora);
         
     }
 

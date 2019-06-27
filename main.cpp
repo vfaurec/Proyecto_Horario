@@ -86,7 +86,9 @@ int main(){
 
     vector<string> id_docentes;
     vector<string> codigos_cursos;
+
     vector<int> horas_semanales;
+
     Bloque objeto;
 
     id_docentes = filtroBloqueDia(2,"Lunes");
@@ -97,6 +99,7 @@ int main(){
     //obtengo todas las horas de cada curso
     horas_semanales = obtenerHoras(curso);
 
+    
     //verifico si la hora de cada curso y su codigo corresponden segun indice
     for(int i=0; i<codigos_cursos.size(); i++){
         cout << "dato: " << i+1 << endl;
@@ -105,10 +108,10 @@ int main(){
         cout << endl;
     }
 
-    //funcion que asigna y verifica los datos para cada celda del excel
+    //funcion que asigna y verifica los datos para cada celda del excel (39 celdas por hoja)
     for(int i=0; i<39; i++){
-
-        validacion(id_docentes, codigos_cursos, horas_semanales, objeto, curso);
+        
+        //validacion(id_docentes, codigos_cursos, horas_semanales, objeto, curso);
     }
     
     return 0;
