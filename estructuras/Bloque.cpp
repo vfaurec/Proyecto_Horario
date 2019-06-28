@@ -4,6 +4,116 @@
 #include <xlnt/xlnt.hpp>
 
 
+Bloque validacion(vector<string> codigos, vector<int> horas, CursoXLS curso){
+
+    //los datos ingresados son para llenar un solo bloque --> hoja del excel 
+
+    vector<string> id_docentes;
+    Bloque hoja_excel;
+    string codigo_curso;
+    int indice;
+    int hora;
+    int periodo;
+    string dia;
+
+
+        for(int i=0; i<39; i++){
+
+            //cout << "celda [" << i+1 << "]:" << endl;
+
+            //obtengo bloque y dia
+            dia = obtenerDia(i);
+            //cout << "   dia:" << dia << endl;
+            periodo = obtenerBloque(i);
+            //cout << "   bloque : " << periodo << endl;
+
+            //ingresar a un bloque y hora específica
+            id_docentes = filtroBloqueDia(periodo, dia);
+
+            //busco que curso imparte el docente[i]
+            codigo_curso = filtrarCursoPorDocente(curso, id_docentes[i]);
+
+            //busco en que indice de la funcion obtener curso esta el codigo_curso
+            for(int j=0; j<codigos.size(); j++){
+                if(codigo_curso==codigos[j]){
+                    indice = j;
+                }
+            }
+
+            //obtengo las horas del ramo codigo_curso
+            hora = horas[indice];
+
+
+            //hago la validación
+            if(hora > 0){
+
+                //guardo los datos en la estructura bloque
+                hoja_excel.id_docente.push_back(id_docentes[i]);
+                hoja_excel.codigo_curso.push_back(codigos[i]);
+                horas[indice]--; //modifico el vector de horas
+
+                /*cout << "   id_docente: " << hoja_excel.id_docente[i] << endl;
+                cout << "   codigo_curso: " << hoja_excel.codigo_curso[i] << endl;
+                cout << "   al ramo le quedan " << hora << " horas" << endl*/;
+
+            }
+
+        }
+        return hoja_excel;
+    
+}
+
+int obtenerBloque(int indice){
+    int bloque,i=0;
+    if(indice<=5){
+        return bloque = 1;
+    }
+    if(indice>5 || indice<=11){
+        return bloque = 2;
+    }
+    if(indice>11 || indice<=17){
+        return bloque = 3;
+    }
+    if(indice>17 || indice<=23){
+        return bloque = 4;
+    }
+    if(indice>23 || indice<=29){
+        return bloque = 5;
+    }
+    if(indice>29 || indice<34){
+        return bloque = 6;
+    }
+    if(indice>34 || indice<=39){
+        return bloque = 7;
+    }
+}
+
+string obtenerDia(int indice){
+    string dia;
+    if(indice==0 || indice==6 || indice==12 || indice==18 || indice==24 || indice==30 || indice==35){
+        return dia = "Lunes";
+    }
+    if(indice==1 || indice==7 || indice==13 || indice==19 || indice==25 || indice==31 || indice==36){
+        return dia = "Martes";
+    }
+    if(indice==2 || indice==8 || indice==14 || indice==20 || indice==26 || indice==32 || indice==37){
+        return dia = "Miércoles";
+    }
+    if(indice==3 || indice==9 || indice==15 || indice==21 || indice==27 || indice==33 || indice==38){
+        return dia = "Jueves";
+    }
+    if(indice==4 || indice==10 || indice==16 || indice==22 || indice==28 || indice==34 || indice==39){
+        return dia = "Viernes";
+    }
+    if(indice==5 || indice==11 || indice==17 || indice==23 || indice==29){
+        return dia = "Sábado";
+    }
+
+}
+
+/* --------------------------------------------------------------------------------------*/
+
+
 Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
 
     Bloque bloque;
@@ -38,7 +148,7 @@ Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes){
     return bloque;
 }
 
-string asignarSala(SalaXLS Sala, int i){ //retorna un strign con el nombre de una sala concreta
+string asignarSala(SalaXLS Sala, int i){ //retorna un string con el nombre de una sala concreta
     return Sala.edificio[i] + " - " + Sala.sala[i]; 
 }
 
@@ -137,8 +247,6 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
     excelSalida.save("HORARIOS.xlsx");
 }
 
-
-
 /*int getPartes(BloqueXLS bloqueXLS){
     int partes = bloqueXLS.bloques.size/15;
     int extra = bloqueXLS.bloques.size%15;
@@ -164,41 +272,3 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
         cout << endl;
     }
 }*/
-
-/* --------------------------------------------------------------------------------------*/
-
-void validacion(vector<string> id_docentes, vector<string> codigos, vector<int> horas, Bloque hoja_excel, CursoXLS curso){
-
-    /*funcion que valida los datos y los guarda en la estructura bloque*/
-
-    //los datos ingresados son para llenar un solo bloque --> hoja del excel
-
-    string codigo_curso;
-    int indice;
-    int hora;
-
-    for(int i=0; i<id_docentes.size(); i++){
-        //busco que curso imparte el docente[i]
-        codigo_curso = filtrarCursoPorDocente(curso, id_docentes[i]);
-        //busco en que indice de la funcion obtener curso esta el codigo_curso
-        for(int j=0; j<codigos.size(); j++){
-            if(codigos[i]==codigo_curso){
-                indice = j;
-            }
-        }
-        //obtengo las horas del ramo codigo_curso
-        hora = horas[indice];
-        //hago la validación
-        if(hora > 0){
-            //guardo los datos en la estructura bloque
-            hoja_excel.id_docente.push_back(id_docentes[i]);
-            hoja_excel.codigo_curso.push_back(codigos[i]);
-            hora--;
-        }
-        cout << "celda [ " << i+1 << " ]: " << endl;
-        cout << hoja_excel.id_docente[i] << " - " << hoja_excel.codigo_curso[i] << endl;
-        cout << "al ramo le quedan " << hora << " horas semanales" << endl;
-
-    }
-
-}

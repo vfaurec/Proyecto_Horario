@@ -9,20 +9,20 @@
 
 using namespace std;
 
-/*Cada bloque será una celda
-    cada celda contiene una sala especifica (hoja del excel)
-    y dentro de esta sala tenemos los bloques disponibles semanales (celda del excel)
-    el cual corresponde al largo de los dos vectores restantes en la estructura
-    que son profesores y codigos de las asignaturas impartidas*/
-
-struct Bloque {
+struct Bloque { //representa una hoja de salida del excel
     string edificio;
     string sala;
     vector<string> id_docente;
     vector<string> codigo_curso;
-    //vector<int> horas_curso; 
     bool estado=false;
 };
+
+Bloque validacion(vector<string> codigos, vector<int> horas, CursoXLS curso);
+int obtenerBloque(int indice);
+string obtenerDia(int indice);
+
+/* --------------------------------------------------------------------------------------*/
+
 
 
 Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes);
@@ -31,7 +31,3 @@ string asignarSalaXLS(SalaXLS Sala, int i);
 
 //int setPartes(vector<BloqueXLS> bloques);
 //void obtenerSala(Bloque bloque[], Sala Sala, string filename);
-
-/* --------------------------------------------------------------------------------------*/
-
-void validacion(vector<string> id_docentes, vector<string> codigos, vector<int> horas, Bloque hoja_excel, CursoXLS curso);

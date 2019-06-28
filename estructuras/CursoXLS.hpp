@@ -19,10 +19,11 @@ struct CursoXLS //estructura que representa el archivo Cursos.xlsx
 
 CursoXLS cargarArchivoCurso(string filename);
 vector<string> obtenerCursos(CursoXLS Curso);
+vector<int> obtenerHoras(CursoXLS Curso);
+string filtrarCursoPorDocente(CursoXLS curso, string id_docente);
 
 /* --------------------------------------------------------------------------------------*/
 
 void mostrarFila(CursoXLS curso, int indice);
 string filtrarCurso(CursoXLS curso, string identificador);
-string filtrarCursoPorDocente(CursoXLS curso, string id_docente);
-vector<int> obtenerHoras(CursoXLS Curso);
+

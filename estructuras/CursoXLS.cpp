@@ -36,12 +36,41 @@ vector<string> obtenerCursos(CursoXLS Curso){ //obtiene en un vector los codigos
 
     vector<string> codigos_cursos;
 
-    for(int i=0; i<Curso.codigo.size();i++){
+    for(int i=1; i<Curso.codigo.size();i++){
         codigos_cursos.push_back(Curso.codigo[i]);
     }
 
     return codigos_cursos;
 
+}
+
+vector<int> obtenerHoras(CursoXLS Curso){
+
+    vector<int> horas_semanales;
+    int hora;
+
+    /* función que obtiene todas las horas semanales de cada curso 
+        en el archivo del excel y los guarda en un vector */
+
+    for(int i=1; i<Curso.bloque.size();i++){
+        
+        hora = stoi(Curso.bloque[i]);
+        horas_semanales.push_back(hora);
+        
+    }
+
+    return horas_semanales;
+
+}
+
+string filtrarCursoPorDocente(CursoXLS curso, string id_docente){
+    string codigo;
+    for(int i=0;i<curso.nombre.size();i++){
+        if(curso.id_docente[i] == id_docente){
+           codigo = curso.codigo[i]; 
+        }
+    }
+    return codigo;
 }
 
 /* --------------------------------------------------------------------------------------*/
@@ -66,31 +95,5 @@ string filtrarCurso(CursoXLS curso, string identificador){
     }
 }
 
-string filtrarCursoPorDocente(CursoXLS curso, string id_docente){
-    string codigo;
-    for(int i=0;i<curso.nombre.size();i++){
-        if(curso.id_docente[i] == id_docente){
-           codigo = curso.codigo[i]; 
-        }
-    }
-    return codigo;
-}
 
-vector<int> obtenerHoras(CursoXLS Curso){
 
-    vector<int> horas_semanales;
-    int hora;
-
-    /* función que obtiene todas las horas semanales de cada curso 
-        en el archivo del excel y los guarda en un vector */
-
-    for(int i=0; i<Curso.bloque.size();i++){
-        
-        hora = stoi(Curso.bloque[i]);
-        horas_semanales.push_back(hora);
-        
-    }
-
-    return horas_semanales;
-
-}
