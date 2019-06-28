@@ -3,11 +3,19 @@
 #include "Bloque.hpp"
 #include <xlnt/xlnt.hpp>
 
+int incluido(vector<int> lista, int item){
+    for(int i = 0; i < lista.size() ; i++){
+        if(lista[i] == item){
+            return i;
+        }
+    }
+    return -1;
+}
 
 Bloque validacion(vector<string> codigos, vector<int>& horas, CursoXLS curso){
 
     //los datos ingresados son para llenar un solo bloque --> hoja del excel 
-
+    vector<int> no_disponibles;
     vector<string> id_docentes;
     Bloque hoja_excel;
     string codigo_curso;
@@ -45,17 +53,14 @@ Bloque validacion(vector<string> codigos, vector<int>& horas, CursoXLS curso){
 
 
             //hago la validación
-            if(hora > 0){
+            if(hora > 0 && incluido(no_disponibles, indice) == -1){
 
                 //guardo los datos en la estructura bloque
                 hoja_excel.id_docente.push_back(id_docentes[i]);
                 hoja_excel.codigo_curso.push_back(codigos[i]);
-                if(indice == 251){
-                    cout << indice << ": " << horas[indice] << endl;
-                }
                 horas[indice]--; //modifico el vector de horas
-                if(indice == 251){
-                    cout << indice << ": " << horas[indice] << endl;
+                if(horas[indice] == 0){
+                    no_disponibles.push_back(indice);
                 }
                 /*cout << "   id_docente: " << hoja_excel.id_docente[i] << endl;
                 cout << "   codigo_curso: " << hoja_excel.codigo_curso[i] << endl;
