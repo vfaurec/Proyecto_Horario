@@ -7,11 +7,19 @@
 #include"estructuras/SalaXLS.hpp"
 #include"estructuras/Bloque.hpp"
 
+#include <cstdio>
+#include <ctime>
+
 using namespace std;
 
 int main(){
 
     int filas_archivo_salasXls;
+
+    std::clock_t start;
+    double duration;
+
+    start = std::clock();
 
     DocenteXLS docente = cargarArchivoDocente("archivos/Docentes.xlsx");
     if(!docente.check) cout<<" * ERROR * --> EL archivo DOCENTES no se pudo cargar"<<endl;
@@ -54,7 +62,7 @@ int main(){
 
     //funcion que asigna y verifica los datos para cada celda del excel (39 celdas por hoja)
 
-    for(int i=0; i<filas_archivo_salasXls;i++){
+    for(int i=0; i<3;i++){
 
         //cout << "sala: " << i+1 << endl;
         hoja_excel = validacion(codigos_cursos, horas_semanales, Curso);
@@ -65,11 +73,12 @@ int main(){
         Hojas.push_back(hoja_excel);
 
     }
-
-
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    cout << duration << " Segundos" <<endl;
     cout << "********** creación del excel ***********" << endl;
     
     crearformatoExcel(Hojas,sala);
+    
     
     return 0;
 }

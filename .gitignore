@@ -1,4 +1,5 @@
 .vscode/
 Libreria(xlnt)_actualizada/
+xlnt/
 *.docx
 *.out

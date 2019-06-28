@@ -4,7 +4,7 @@
 #include <xlnt/xlnt.hpp>
 
 
-Bloque validacion(vector<string> codigos, vector<int> horas, CursoXLS curso){
+Bloque validacion(vector<string> codigos, vector<int>& horas, CursoXLS curso){
 
     //los datos ingresados son para llenar un solo bloque --> hoja del excel 
 
@@ -50,8 +50,13 @@ Bloque validacion(vector<string> codigos, vector<int> horas, CursoXLS curso){
                 //guardo los datos en la estructura bloque
                 hoja_excel.id_docente.push_back(id_docentes[i]);
                 hoja_excel.codigo_curso.push_back(codigos[i]);
+                if(indice == 251){
+                    cout << indice << ": " << horas[indice] << endl;
+                }
                 horas[indice]--; //modifico el vector de horas
-
+                if(indice == 251){
+                    cout << indice << ": " << horas[indice] << endl;
+                }
                 /*cout << "   id_docente: " << hoja_excel.id_docente[i] << endl;
                 cout << "   codigo_curso: " << hoja_excel.codigo_curso[i] << endl;
                 cout << "   al ramo le quedan " << hora << " horas" << endl*/;
