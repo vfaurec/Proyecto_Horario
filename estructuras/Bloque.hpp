@@ -17,7 +17,7 @@ struct Bloque { //representa una hoja de salida del excel
     bool estado=false;
 };
 
-Bloque validacion(vector<string> codigos, vector<int>& horas, CursoXLS curso);
+Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso);
 int obtenerBloque(int indice);
 string obtenerDia(int indice);
 

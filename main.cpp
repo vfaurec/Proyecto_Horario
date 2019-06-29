@@ -41,16 +41,13 @@ int main(){
     vector<int> horas_semanales;
     vector<Bloque> Hojas;
     Bloque hoja_excel;
-    string salon;
-
-    
 
     //obtengo todos los codigos de cursos
     codigos_cursos = obtenerCursos(Curso);
+    cout << "numero cursos: "  << codigos_cursos.size() << endl;
     
     //obtengo todas las horas de cada curso
     horas_semanales = obtenerHoras(Curso);
-
     
     //verifico si la hora de cada curso y su codigo corresponden segun indice
     /*for(int i=0; i<codigos_cursos.size(); i++){
@@ -61,23 +58,34 @@ int main(){
     }*/
 
     //funcion que asigna y verifica los datos para cada celda del excel (39 celdas por hoja)
-
-    for(int i=0; i<3;i++){
-
-        //cout << "sala: " << i+1 << endl;
+    for(int i=0; i<filas_archivo_salasXls;i++){
+        cout << "sala: " << i+1 << endl;
         hoja_excel = validacion(codigos_cursos, horas_semanales, Curso);
-        
-        //cout << "   id_docente: " << hoja_excel.id_docente[i] << endl;
-        //cout << "   codigo_curso: " << hoja_excel.codigo_curso[i] << endl;
 
         Hojas.push_back(hoja_excel);
 
+        /*for(int j=0;j<Hojas[i].id_docente.size();j++){
+            cout << "Dato [ " << j+1 << " ] " << " | ";
+            cout << " id_docente " << Hojas[i].id_docente[j] << " | ";
+            cout << " codigo_curso " << Hojas[i].codigo_curso[j] << endl;
+        }*/
     }
+
     duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
     cout << duration << " Segundos" <<endl;
-    cout << "********** creación del excel ***********" << endl;
+    //cout << "********** creación del excel ***********" << endl;
+
+    //cout << "************** DATOS *************" << endl;
+    /*for(int i=0; i<filas_archivo_salasXls;i++){
+        cout << "sala: " << i+1 << " | ";
+        for(int j=0;j<Hojas[i].id_docente.size();j++){
+            cout << "Dato [ " << j+1 << " ] " << " | ";
+            cout << " id_docente " << Hojas[i].id_docente[j] << " | ";
+            cout << " codigo_curso " << Hojas[i].codigo_curso[j] << endl;
+        }
+    }*/
     
-    crearformatoExcel(Hojas,sala);
+    //crearformatoExcel(Hojas,sala);
     
     
     return 0;

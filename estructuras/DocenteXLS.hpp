@@ -22,11 +22,12 @@ struct DocenteXLS //estructura que representa al archivo Docentes.xlsx
 };
 
 DocenteXLS cargarArchivoDocente(string filename);
+vector<string> filtroBloqueDia(int bloque, string dia);
 
 /* --------------------------------------------------------------------------------------*/
 
 vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque);
 string hallarDisponible(DocenteXLS docenteXLS, int bloque);
-vector<string> filtroBloqueDia(int bloque, string dia);
+
 DocenteXLS cargarPorDia(string filename, string dia);
 

@@ -12,22 +12,25 @@ int incluido(vector<int> lista, int item){
     return -1;
 }
 
-Bloque validacion(vector<string> codigos, vector<int>& horas, CursoXLS curso){
+Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso){
 
     //los datos ingresados son para llenar un solo bloque --> hoja del excel 
     vector<int> no_disponibles;
     vector<string> id_docentes;
+    
     Bloque hoja_excel;
     string codigo_curso;
-    int indice;
-    int hora;
-    int periodo;
-    string dia;
 
+    int indice=0;
+
+    int periodo=0;
+    string dia="-";
+
+    int asignado=0;
 
         for(int i=0; i<39; i++){
 
-            //cout << "celda [" << i+1 << "]:" << endl;
+            cout << "celda: " << i+1 << " | ";
 
             //obtengo bloque y dia
             dia = obtenerDia(i);
@@ -38,9 +41,15 @@ Bloque validacion(vector<string> codigos, vector<int>& horas, CursoXLS curso){
             //ingresar a un bloque y hora específica
             id_docentes = filtroBloqueDia(periodo, dia);
 
+            /*for(int i=0; i<id_docentes.size();i++){
+                cout << "docente disponible [ " << i+1 << " ]: " << id_docentes[i] << endl;
+            }*/
+            
+            cout << "*****************" << endl;
             //busco que curso imparte el docente[i]
             codigo_curso = filtrarCursoPorDocente(curso, id_docentes[i]);
-
+            
+            
             //busco en que indice de la funcion obtener curso esta el codigo_curso
             for(int j=0; j<codigos.size(); j++){
                 if(codigo_curso==codigos[j]){
@@ -48,52 +57,50 @@ Bloque validacion(vector<string> codigos, vector<int>& horas, CursoXLS curso){
                 }
             }
 
-            //obtengo las horas del ramo codigo_curso
-            hora = horas[indice];
+            if(horas[indice]==1){
 
-
-            //hago la validación
-            if(hora > 0 && incluido(no_disponibles, indice) == -1){
-
-                //guardo los datos en la estructura bloque
                 hoja_excel.id_docente.push_back(id_docentes[i]);
-                hoja_excel.codigo_curso.push_back(codigos[i]);
-                horas[indice]--; //modifico el vector de horas
-                if(horas[indice] == 0){
-                    no_disponibles.push_back(indice);
+                hoja_excel.codigo_curso.push_back(codigo_curso);
+                cout << " asignado------> " << i+1 << endl;
+
+            }else{
+            
+                if(horas[indice]>0){
+                    //guardo los datos en la estructura bloque
+                    hoja_excel.id_docente.push_back(id_docentes[i]);
+                    hoja_excel.codigo_curso.push_back(codigo_curso);
+                    horas[indice]--;
+                    cout << " asignado------> " << i+1 << endl;
                 }
-                /*cout << "   id_docente: " << hoja_excel.id_docente[i] << endl;
-                cout << "   codigo_curso: " << hoja_excel.codigo_curso[i] << endl;
-                cout << "   al ramo le quedan " << hora << " horas" << endl*/;
 
             }
 
-        }
-        return hoja_excel;
-    
+        }    
+    return hoja_excel;
 }
 
 int obtenerBloque(int indice){
-    int bloque,i=0;
-    if(indice<=5){
+    int bloque;
+    //indice==0 || indice==1 || indice==2 || indice==3 || indice==4 || indice==5
+    if(indice==0 || indice<=5){
         return bloque = 1;
     }
-    if(indice>5 || indice<=11){
+    if(indice==6 || indice<=11){
         return bloque = 2;
     }
-    if(indice>11 || indice<=17){
+    if(indice==12 || indice<=17){
         return bloque = 3;
     }
-    if(indice>17 || indice<=23){
+    if(indice==18 || indice<=23){
         return bloque = 4;
     }
-    if(indice>23 || indice<=29){
+    if(indice==24 || indice<=29){
         return bloque = 5;
     }
-    if(indice>29 || indice<34){
+    if(indice==30 || indice<=34){
         return bloque = 6;
     }
-    if(indice>34 || indice<=39){
+    if(indice==35 || indice<=39){
         return bloque = 7;
     }
 }
@@ -118,7 +125,6 @@ string obtenerDia(int indice){
     if(indice==5 || indice==11 || indice==17 || indice==23 || indice==29){
         return dia = "Sábado";
     }
-
 }
 
 /* --------------------------------------------------------------------------------------*/
@@ -172,7 +178,7 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas){
 
     cout << bloques.size() << endl;
 
-    for(int j=0;j<53;j++){ //ciclo por cada sala
+    for(int j=0;j<54;j++){ //ciclo por cada sala
 
         string celda;
         int i;

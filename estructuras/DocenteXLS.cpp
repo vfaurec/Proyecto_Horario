@@ -206,7 +206,7 @@ vector<string> filtroBloqueDia(int bloque, string dia){
             case 1:
                 for (int i = 0; i < docente.id_docente.size(); i++){
                     if(docente.bloque1[i] == palabra){
-                        id_docentes.push_back(docente.id_docente[i]);
+                                id_docentes.push_back(docente.id_docente[i]);
                     }
                 }
                 return id_docentes;
