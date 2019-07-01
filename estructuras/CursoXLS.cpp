@@ -65,9 +65,7 @@ vector<int> obtenerHoras(CursoXLS Curso){
 
 string filtrarCursoPorDocente(CursoXLS curso, string id_docente){
     string codigo;
-    
     for(int i=0;i<curso.codigo.size();i++){
-        
         if(curso.id_docente[i] == id_docente){
            codigo = curso.codigo[i]; 
         }

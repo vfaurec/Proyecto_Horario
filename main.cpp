@@ -44,7 +44,7 @@ int main(){
 
     //obtengo todos los codigos de cursos
     codigos_cursos = obtenerCursos(Curso);
-    cout << "numero cursos: "  << codigos_cursos.size() << endl;
+    //cout << "numero cursos: "  << codigos_cursos.size() << endl;
     
     //obtengo todas las horas de cada curso
     horas_semanales = obtenerHoras(Curso);
@@ -64,11 +64,11 @@ int main(){
 
         Hojas.push_back(hoja_excel);
 
-        /*for(int j=0;j<Hojas[i].id_docente.size();j++){
+        for(int j=0;j<Hojas[i].id_docente.size();j++){
             cout << "Dato [ " << j+1 << " ] " << " | ";
             cout << " id_docente " << Hojas[i].id_docente[j] << " | ";
             cout << " codigo_curso " << Hojas[i].codigo_curso[j] << endl;
-        }*/
+        }
     }
 
     duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
@@ -85,7 +85,7 @@ int main(){
         }
     }*/
     
-    //crearformatoExcel(Hojas,sala);
+    crearformatoExcel(Hojas,sala);
     
     
     return 0;

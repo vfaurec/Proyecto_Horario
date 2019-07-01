@@ -20,17 +20,14 @@ Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso){
     
     Bloque hoja_excel;
     string codigo_curso;
-
-    int indice=0;
-
-    int periodo=0;
-    string dia="-";
-
-    int asignado=0;
+    int indice;
+    int periodo;
+    string dia;
+    int asignado;
 
         for(int i=0; i<39; i++){
 
-            cout << "celda: " << i+1 << " | ";
+            //cout << "celda: " << i << " | ";
 
             //obtengo bloque y dia
             dia = obtenerDia(i);
@@ -40,15 +37,10 @@ Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso){
 
             //ingresar a un bloque y hora específica
             id_docentes = filtroBloqueDia(periodo, dia);
-
-            /*for(int i=0; i<id_docentes.size();i++){
-                cout << "docente disponible [ " << i+1 << " ]: " << id_docentes[i] << endl;
-            }*/
             
-            cout << "*****************" << endl;
+            //cout <<  "numero de docentes disponibles: " << id_docentes.size() << endl;
             //busco que curso imparte el docente[i]
             codigo_curso = filtrarCursoPorDocente(curso, id_docentes[i]);
-            
             
             //busco en que indice de la funcion obtener curso esta el codigo_curso
             for(int j=0; j<codigos.size(); j++){
@@ -61,7 +53,7 @@ Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso){
 
                 hoja_excel.id_docente.push_back(id_docentes[i]);
                 hoja_excel.codigo_curso.push_back(codigo_curso);
-                cout << " asignado------> " << i+1 << endl;
+                //cout << " asignado------> " << i+1 << endl;
 
             }else{
             
@@ -70,7 +62,7 @@ Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso){
                     hoja_excel.id_docente.push_back(id_docentes[i]);
                     hoja_excel.codigo_curso.push_back(codigo_curso);
                     horas[indice]--;
-                    cout << " asignado------> " << i+1 << endl;
+                    //cout << " asignado------> " << i+1 << endl;
                 }
 
             }
@@ -82,47 +74,47 @@ Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso){
 int obtenerBloque(int indice){
     int bloque;
     //indice==0 || indice==1 || indice==2 || indice==3 || indice==4 || indice==5
-    if(indice==0 || indice<=5){
+    if(indice==0 || indice==1 || indice==2 || indice==3 || indice==4 || indice==5){
         return bloque = 1;
     }
-    if(indice==6 || indice<=11){
+    if(indice==6 || indice==7 || indice==8 || indice==9 || indice==10 || indice==11){
         return bloque = 2;
     }
-    if(indice==12 || indice<=17){
+    if(indice==12 || indice==13 || indice==14 || indice==15 || indice==16 || indice==17){
         return bloque = 3;
     }
-    if(indice==18 || indice<=23){
+    if(indice==18 || indice==19 || indice==20 || indice==21 || indice==22 || indice==23){
         return bloque = 4;
     }
-    if(indice==24 || indice<=29){
+    if(indice==24 || indice==25 || indice==26 || indice==27 || indice==28){
         return bloque = 5;
     }
-    if(indice==30 || indice<=34){
+    if(indice==29 || indice==30 || indice==31 || indice==32 || indice==33){
         return bloque = 6;
     }
-    if(indice==35 || indice<=39){
+    if(indice==34 || indice==35 || indice==36 || indice==37 || indice==38){
         return bloque = 7;
     }
 }
 
 string obtenerDia(int indice){
     string dia;
-    if(indice==0 || indice==6 || indice==12 || indice==18 || indice==24 || indice==30 || indice==35){
+    if(indice==0 || indice==6 || indice==12 || indice==18 || indice==24 || indice==29 || indice==34){
         return dia = "Lunes";
     }
-    if(indice==1 || indice==7 || indice==13 || indice==19 || indice==25 || indice==31 || indice==36){
+    if(indice==1 || indice==7 || indice==13 || indice==19 || indice==25 || indice==30 || indice==35){
         return dia = "Martes";
     }
-    if(indice==2 || indice==8 || indice==14 || indice==20 || indice==26 || indice==32 || indice==37){
+    if(indice==2 || indice==8 || indice==14 || indice==20 || indice==26 || indice==31 || indice==36){
         return dia = "Miércoles";
     }
-    if(indice==3 || indice==9 || indice==15 || indice==21 || indice==27 || indice==33 || indice==38){
+    if(indice==3 || indice==9 || indice==15 || indice==21 || indice==27 || indice==32 || indice==37){
         return dia = "Jueves";
     }
-    if(indice==4 || indice==10 || indice==16 || indice==22 || indice==28 || indice==34 || indice==39){
+    if(indice==4 || indice==10 || indice==16 || indice==22 || indice==28 || indice==33 || indice==38){
         return dia = "Viernes";
     }
-    if(indice==5 || indice==11 || indice==17 || indice==23 || indice==29){
+    if(indice==5 || indice==11 || indice==17 || indice==23){
         return dia = "Sábado";
     }
 }
