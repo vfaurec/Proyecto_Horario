@@ -9,7 +9,8 @@
 
 using namespace std;
 
-struct Bloque { //representa una hoja de salida del excel
+struct Bloque //representa una hoja de salida del excel
+{ 
     string edificio;
     string sala;
     vector<string> id_docente;
@@ -20,14 +21,9 @@ struct Bloque { //representa una hoja de salida del excel
 Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso);
 int obtenerBloque(int indice);
 string obtenerDia(int indice);
-
-/* --------------------------------------------------------------------------------------*/
-
-
-
-Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes);
 void crearformatoExcel(vector<Bloque> objeto, SalaXLS salas);
 string asignarSalaXLS(SalaXLS Sala, int i);
 
-//int setPartes(vector<BloqueXLS> bloques);
-//void obtenerSala(Bloque bloque[], Sala Sala, string filename);
+/* --------------------------------------------------------------------------------------*/
+
+Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes);
