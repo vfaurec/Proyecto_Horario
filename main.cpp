@@ -94,24 +94,13 @@ int main( int argc, char* argv[]){
         cout << endl << "SALA ------------> " << i+1 << endl;
         hoja_excel = validacion(codigos_cursos, horas_semanales, Curso);
         Hojas.push_back(hoja_excel);
-        /*for(int j=0;j<Hojas[i].id_docente.size();j++){
-            cout << "Dato [ " << j+1 << " ] " << " | ";
-            cout << " id_docente " << Hojas[i].id_docente[j] << " | ";
-            cout << " codigo_curso " << Hojas[i].codigo_curso[j] << endl;
-        }*/
     }
 
-    /*pruebas con menos salas
-    for(int i=0; i<20;i++){
-        cout << "sala: " << i+1 << endl;
-        hoja_excel = validacion(codigos_cursos, horas_semanales, Curso);
-        Hojas.push_back(hoja_excel);
-    }*/
 
     //tiempo de ejecución del programa
 
     duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
-    cout << endl << duration << " Segundos" <<endl;
+    cout << "El programa demora " << duration << " Segundos" <<endl;
     
     //llenado en excel ----> HORARIOS.XLSX
 

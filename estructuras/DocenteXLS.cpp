@@ -1,7 +1,8 @@
 #include"DocenteXLS.hpp"
 #include<xlnt/xlnt.hpp>
 
-DocenteXLS cargarArchivoDocente(string filename){ //carga archivo Docentes.xlsx
+DocenteXLS cargarArchivoDocente(string filename) //carga archivo Docentes.xlsx
+{ 
 
     DocenteXLS Docente;
     xlnt::workbook archivo;
@@ -35,135 +36,8 @@ DocenteXLS cargarArchivoDocente(string filename){ //carga archivo Docentes.xlsx
     
 }
 
-/* --------------------------------------------------------------------------------------*/
-
-string hallarDisponible(DocenteXLS docenteXLS, int bloque){
-    string id_disponible;
-
-    string palabra = "DISPONIBLE";
-    if(bloque < 8 && bloque > 0){
-        switch(bloque){
-            case 1:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque1[i] == palabra){
-                        return docenteXLS.id_docente[i];
-                    }
-                }
-                break;
-            case 2:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque2[i] == palabra){
-                        return docenteXLS.id_docente[i];
-                    }
-                }
-                break;
-            case 3:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque3[i] == palabra){
-                        return docenteXLS.id_docente[i];
-                    }
-                }
-                break;
-            case 4:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque4[i] == palabra){
-                        return docenteXLS.id_docente[i];
-                    }
-                }
-                break;
-            case 5:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque5[i] == palabra){
-                        return docenteXLS.id_docente[i];
-                    }
-                }
-                break;
-            case 6:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque6[i] == palabra){
-                        return docenteXLS.id_docente[i];
-                    }
-                }
-                break;
-            case 7:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque7[i] == palabra){
-                        return docenteXLS.id_docente[i];
-                    }
-                }
-                break;
-        }
-    }
-}
-
-vector<DocenteXLS> filtrarBloque(DocenteXLS docenteXLS, int bloque){
-    vector<DocenteXLS> disponibles;
-    DocenteXLS docente;
-    string palabra ="DISPONIBLE";
-    if(bloque < 8 && bloque > 0){
-        switch(bloque){
-            case 1:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque1[i] == palabra){
-                        docente.id_docente[i] = docenteXLS.id_docente[i];
-                        disponibles.push_back(docente);
-                    }
-                }
-                break;
-            case 2:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque2[i] == palabra){
-                        docente.id_docente[i] = docenteXLS.id_docente[i];
-                        disponibles.push_back(docente);
-                    }
-                }
-                break;
-            case 3:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque3[i] == palabra){
-                        docente.id_docente[i] = docenteXLS.id_docente[i];
-                        disponibles.push_back(docente);
-                    }
-                }
-                break;
-            case 4:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque4[i] == palabra){
-                        docente.id_docente[i] = docenteXLS.id_docente[i];
-                        disponibles.push_back(docente);
-                    }
-                }
-                break;
-            case 5:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque5[i] == palabra){
-                        docente.id_docente[i] = docenteXLS.id_docente[i];
-                        disponibles.push_back(docente);
-                    }
-                }
-                break;
-            case 6:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque6[i] == palabra){
-                        docente.id_docente[i] = docenteXLS.id_docente[i];
-                        disponibles.push_back(docente);
-                    }
-                }
-                break;
-            case 7:
-                for (int i = 0; i < docenteXLS.id_docente.size(); i++){
-                    if(docenteXLS.bloque7[i] == palabra){
-                        docente.id_docente[i] = docenteXLS.id_docente[i];
-                        disponibles.push_back(docente);
-                    }
-                }
-                break;
-        }
-    }
-    return disponibles;
-}
-
-DocenteXLS cargarPorDia(string filename, string dia){
+DocenteXLS cargarPorDia(string filename, string dia)
+{
     DocenteXLS docente;
     xlnt::workbook archivo;
 
@@ -193,7 +67,8 @@ DocenteXLS cargarPorDia(string filename, string dia){
     }
 }
 
-vector<string> filtroBloqueDia(int bloque, string dia){
+vector<string> filtroBloqueDia(int bloque, string dia)
+{
 
     DocenteXLS docente;
     vector<string> id_docentes;

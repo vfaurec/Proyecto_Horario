@@ -2,19 +2,8 @@
 #include <xlnt/xlnt.hpp>
 #include <stdlib.h>
 
-int incluido(vector<int> lista, int item) //verifica si un docente esta incluido o no en la lista
-{
-    for(int i=0; i<lista.size(); i++)
-    {
-        if( lista[i] == item)
-        {
-            return i;
-        }
-    }
-    return -1;
-}
 
-Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso)
+Bloque validacion(vector<string>& codigos, vector<int>& horas, CursoXLS curso) //validacion y asignacion
 {
 
     //los datos ingresados son para llenar un solo bloque --> hoja del excel 
@@ -150,8 +139,6 @@ void crearformatoExcel(vector<Bloque> bloques, SalaXLS salas) //crea y llena el 
     
     for(int j=0; j<bloques.size(); j++)
     { 
-
-        cout << "creando hoja ---> " << j+1 << endl;
 
         string celda;
         int i;

@@ -22,8 +22,3 @@ vector<string> obtenerCursos(CursoXLS Curso);
 vector<int> obtenerHoras(CursoXLS Curso);
 string filtrarCursoPorDocente(CursoXLS curso, string id_docente);
 
-/* --------------------------------------------------------------------------------------*/
-
-void mostrarFila(CursoXLS curso, int indice);
-string filtrarCurso(CursoXLS curso, string identificador);
-
