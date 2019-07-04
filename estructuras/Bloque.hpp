@@ -23,7 +23,3 @@ int obtenerBloque(int indice);
 string obtenerDia(int indice);
 void crearformatoExcel(vector<Bloque> objeto, SalaXLS salas);
 string asignarSalaXLS(SalaXLS Sala, int i);
-
-/* --------------------------------------------------------------------------------------*/
-
-Bloque asignarProfesoresDisponibles(CursoXLS curso, DocenteXLS docentes);
