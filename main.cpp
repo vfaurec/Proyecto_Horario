@@ -91,7 +91,7 @@ int main( int argc, char* argv[]){
 
     for(int i=0; i<53; i++)
     {
-        cout << endl << "SALA ------------> " << i+1 << endl;
+        //cout << endl << "SALA ------------> " << i+1 << endl;
         hoja_excel = validacion(codigos_cursos, horas_semanales, Curso);
         Hojas.push_back(hoja_excel);
     }
